@@ -1,0 +1,4 @@
+vaullt:
+    - http://192.168.99.101:8200/ui/vault/auth
+consul:
+    - http://192.168.99.101:8500/ui

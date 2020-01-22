@@ -1,0 +1,23 @@
+
+docker-compose -f vaultroot/docker-compose.yml exec vault bash
+
+vault operator init
+
+Unseal Key 1: vgMeIihbt/Pzv6HmojHCzcS//vOx7Jt6qMp6nDrwUTho
+Unseal Key 2: wVPw2ZurYlwqZn3gw8DX19axMp5eDrB2JJKuaCnWwJqT
+Unseal Key 3: UWaYp3ruRQ+jIdVT92YkN9gGT5D/Kha+E8o01TSSoFbP
+Unseal Key 4: 9i3yqRBZ+N4bN1V1y7gMX//HUgj7hOEJFTBW5riYHEev
+Unseal Key 5: YZ3wJ8SL4Hj8dfF9e6tntlPWjfpnzVo0XODjIpApqC2W
+
+Initial Root Token: fc0d73c1-a717-0016-9997-2a84ddb3e4e2
+
+vault operator unseal
+
+AAAAB3NzaC1yc2EAAAADAQABAAABAQDvaAqbMx0i
+
+QUFBQUIzTnphQzF5YzJFQUFBQURBUUE=
+
+vault login fc0d73c1-a717-0016-9997-2a84ddb3e4e2
+
+vault audit enable file file_path=/vault/logs/audit.log
+vault audit list
