@@ -6,7 +6,7 @@ services:
     build:
       context: ./vault
       dockerfile: Dockerfile
-      networks:
+    networks:
          - ms-chassis-nw
     ports:
       - 8200:8200
@@ -20,3 +20,5 @@ services:
     command: server -config=/vault/config/vault-config.json
     cap_add:
       - IPC_LOCK
+networks:
+  ms-chassis-nw:
