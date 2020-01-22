@@ -18,12 +18,14 @@ RUN wget --quiet --output-document=/tmp/vault.zip https://releases.hashicorp.com
     unzip /tmp/vault.zip -d /vault && \
     rm -f /tmp/vault.zip && \
     chmod +x /vault
-
+#RUN apk add sleep
 # update PATH
 ENV PATH="PATH=$PATH:$PWD/vault"
+RUN chmod 777 "$PWD/vault"
 
 # add the config file
 COPY ./config/vault-config.json /vault/config/vault-config.json
+RUN chmod 777 /vault/config/vault-config.json
 
 # expose port 8200
 EXPOSE 8200
