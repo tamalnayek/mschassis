@@ -5,4 +5,4 @@ echo "Starting consul.........."
 docker-compose -f consul/docker-compose.yaml up -d
 
 echo "Starting vault.........."
-docker-compose -f vaultroot/docker-compose.yaml up -d
+docker-compose -f vaultroot/docker-compose.yml up -d
