@@ -6,6 +6,8 @@ services:
     build:
       context: ./vault
       dockerfile: Dockerfile
+      networks:
+         - ms-chassis-nw
     ports:
       - 8200:8200
     volumes:
