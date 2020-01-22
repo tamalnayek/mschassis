@@ -1,0 +1,3 @@
+version: '3'
+networks:
+  ms-chassis-nw:
