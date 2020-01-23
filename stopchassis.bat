@@ -26,6 +26,11 @@ docker-compose -f vaultroot/docker-compose.yaml down
 echo "Starting Rabbit MQ .........."
 docker-compose -f rabbitmq/docker-compose.yaml down
 
+echo "Stopping Cloud Foundary UAA .........."
+docker container stop uaa
+docker container rm uaa
+
+
 echo "Prunning all containers.........."
 docker container prune --force
 
