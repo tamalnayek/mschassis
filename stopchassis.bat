@@ -18,7 +18,7 @@ echo "Stopping mongo DB.........."
 docker-compose -f mongodb/docker-compose.yaml down
 
 echo "Stopping mySQL DB.........."
-docker-compose -f mysql/docker-compose.yaml up -d
+docker-compose -f mysql/docker-compose.yaml down
 
 echo "Stopping vault.........."
 docker-compose -f vaultroot/docker-compose.yaml down
@@ -26,6 +26,8 @@ docker-compose -f vaultroot/docker-compose.yaml down
 echo "Starting Rabbit MQ .........."
 docker-compose -f rabbitmq/docker-compose.yaml down
 
+echo "Prunning all containers.........."
+docker container prune --force
 
 
 echo "Stopping chassis network.........."
@@ -34,7 +36,6 @@ docker network rm ms-chassis-nw
 echo "Prunning all networks.........."
 docker network prune --force
 
-echo "Prunning all containers.........."
-docker container prune --force
+
 
 echo "*** CHASSIS REMOVED ***"

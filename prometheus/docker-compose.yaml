@@ -10,6 +10,9 @@ services:
     volumes:
       #- ./config:/etc/prometheus
       - ./data:/prometheus
+     # - type: bind
+     #   source: ./static/prometheus.yml
+     #   target: /etc/prometheus/prometheus.yml
     ports:
       - "9090:9090"
 
