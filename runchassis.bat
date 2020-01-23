@@ -6,14 +6,17 @@ docker network create ms-chassis-nw
 echo "Starting consul.........."
 docker-compose -f consul/docker-compose.yaml up -d
 
-echo "Starting vault.........."
-docker-compose -f vaultroot/docker-compose.yaml up -d
-
 echo "Starting zipkin.........."
 docker-compose -f zipkin/docker-compose.yaml up -d
 
 echo "Starting jenkins.........."
 docker-compose -f jenkins/docker-compose.yaml up -d
+
+echo "Starting mongo DB.........."
+docker-compose -f mongodb/docker-compose.yaml up -d
+
+echo "Starting vault.........."
+docker-compose -f vaultroot/docker-compose.yaml up -d
 
 
 echo "*** CHASSIS STARTED ***"
