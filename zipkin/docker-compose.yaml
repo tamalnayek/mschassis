@@ -14,8 +14,7 @@ services:
   zipkin:
     image: openzipkin/zipkin
     container_name: zipkin
-    networks:
-      - ms-chassis-nw
+
     # Environment settings are defined here https://github.com/openzipkin/zipkin/blob/master/zipkin-server/README.md#environment-variables
     environment:
       - STORAGE_TYPE=mem
@@ -29,4 +28,6 @@ services:
       # Port used for the Zipkin UI and HTTP Api
       - 9411:9411
 networks:
-  ms-chassis-nw:
+ default:
+  external:
+   name: ms-chassis-nw

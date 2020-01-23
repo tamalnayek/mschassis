@@ -6,8 +6,6 @@ services:
     build:
       context: ./vault
       dockerfile: Dockerfile
-    networks:
-         - ms-chassis-nw
     ports:
       - 8200:8200
     volumes:
@@ -21,4 +19,6 @@ services:
     cap_add:
       - IPC_LOCK
 networks:
-  ms-chassis-nw:
+ default:
+  external:
+   name: ms-chassis-nw
