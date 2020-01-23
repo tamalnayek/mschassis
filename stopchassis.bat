@@ -11,6 +11,9 @@ docker-compose -f jenkins/docker-compose.yaml down
 echo "Stopping prometheus.........."
 docker-compose -f prometheus/docker-compose.yaml down
 
+echo "Starting grafana.........."
+docker-compose -f grafana/docker-compose.yaml down
+
 echo "Stopping mongo DB.........."
 docker-compose -f mongodb/docker-compose.yaml down
 
