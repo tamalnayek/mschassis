@@ -16,3 +16,5 @@ grafana:
     - http://192.168.99.101:3000  (admin/secret)
 rabbit MQ:
     - http://192.168.99.101:15672/ (guest/guest)
+uaa:
+    - http://localhost:8888/uaa/login
