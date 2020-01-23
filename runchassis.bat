@@ -12,6 +12,9 @@ docker-compose -f zipkin/docker-compose.yaml up -d
 echo "Starting jenkins.........."
 docker-compose -f jenkins/docker-compose.yaml up -d
 
+echo "Starting prometheus.........."
+docker-compose -f prometheus/docker-compose.yaml up -d
+
 echo "Starting mongo DB.........."
 docker-compose -f mongodb/docker-compose.yaml up -d
 

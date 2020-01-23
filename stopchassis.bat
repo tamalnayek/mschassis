@@ -11,6 +11,8 @@ docker-compose -f vaultroot/docker-compose.yaml down
 echo "Stopping zipkin.........."
 docker-compose -f zipkin/docker-compose.yaml down
 
+docker-compose -f prometheus/docker-compose.yaml down
+
 echo "Stopping mongo DB.........."
 docker-compose -f mongodb/docker-compose.yaml down
 
