@@ -20,6 +20,9 @@ docker-compose -f mongodb/docker-compose.yaml down
 echo "Stopping vault.........."
 docker-compose -f vaultroot/docker-compose.yaml down
 
+echo "Starting Rabbit MQ .........."
+docker-compose -f rabbitmq/docker-compose.yaml down
+
 
 
 echo "Stopping chassis network.........."

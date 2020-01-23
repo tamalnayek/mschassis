@@ -25,4 +25,8 @@ echo "Starting vault.........."
 docker-compose -f vaultroot/docker-compose.yaml up -d
 
 
+echo "Starting Rabbit MQ .........."
+docker-compose -f rabbitmq/docker-compose.yaml up -d
+
+
 echo "*** CHASSIS STARTED ***"
