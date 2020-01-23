@@ -30,8 +30,8 @@ docker-compose -f vaultroot/docker-compose.yaml up -d
 echo "Starting Rabbit MQ .........."
 docker-compose -f rabbitmq/docker-compose.yaml up -d
 
-echo "Starting Cloud Foundary UAA .........."
-docker build --tag uaa uaa/.
-docker run --network ms-chassis-nw -d -p 8888:8090 --name=uaa uaa
+Rem echo "Starting Cloud Foundary UAA .........."
+Rem docker build --tag uaa uaa/.
+Rem docker run --network ms-chassis-nw -d -p 8888:8090 --name=uaa uaa
 
 echo "*** CHASSIS STARTED ***"

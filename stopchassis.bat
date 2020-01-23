@@ -26,9 +26,9 @@ docker-compose -f vaultroot/docker-compose.yaml down
 echo "Starting Rabbit MQ .........."
 docker-compose -f rabbitmq/docker-compose.yaml down
 
-echo "Stopping Cloud Foundary UAA .........."
-docker container stop uaa
-docker container rm uaa
+Rem echo "Stopping Cloud Foundary UAA .........."
+Rem docker container stop uaa
+Rem docker container rm uaa
 
 
 echo "Prunning all containers.........."
