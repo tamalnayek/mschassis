@@ -12,5 +12,8 @@ docker-compose -f vaultroot/docker-compose.yaml up -d
 echo "Starting zipkin.........."
 docker-compose -f zipkin/docker-compose.yaml up -d
 
+echo "Starting jenkins.........."
+docker-compose -f jenkins/docker-compose.yaml up -d
+
 
 echo "*** CHASSIS STARTED ***"

@@ -11,6 +11,9 @@ docker-compose -f vaultroot/docker-compose.yaml down
 echo "Stopping zipkin.........."
 docker-compose -f zipkin/docker-compose.yaml down
 
+echo "Stopping jenkins.........."
+docker-compose -f jenkins/docker-compose.yaml down
+
 echo "Stopping chassis network.........."
 docker network rm ms-chassis-nw
 
