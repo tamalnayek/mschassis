@@ -17,6 +17,9 @@ docker-compose -f grafana/docker-compose.yaml down
 echo "Stopping mongo DB.........."
 docker-compose -f mongodb/docker-compose.yaml down
 
+echo "Stopping mySQL DB.........."
+docker-compose -f mysql/docker-compose.yaml up -d
+
 echo "Stopping vault.........."
 docker-compose -f vaultroot/docker-compose.yaml down
 

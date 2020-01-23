@@ -21,6 +21,9 @@ docker-compose -f grafana/docker-compose.yaml up -d
 echo "Starting mongo DB.........."
 docker-compose -f mongodb/docker-compose.yaml up -d
 
+echo "Starting mySQL DB.........."
+docker-compose -f mysql/docker-compose.yaml up -d
+
 echo "Starting vault.........."
 docker-compose -f vaultroot/docker-compose.yaml up -d
 
