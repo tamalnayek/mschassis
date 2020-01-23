@@ -11,7 +11,7 @@ docker-compose -f jenkins/docker-compose.yaml down
 echo "Stopping prometheus.........."
 docker-compose -f prometheus/docker-compose.yaml down
 
-echo "Starting grafana.........."
+echo "Stopping grafana.........."
 docker-compose -f grafana/docker-compose.yaml down
 
 echo "Stopping mongo DB.........."
@@ -23,7 +23,7 @@ docker-compose -f mysql/docker-compose.yaml down
 echo "Stopping vault.........."
 docker-compose -f vaultroot/docker-compose.yaml down
 
-echo "Starting Rabbit MQ .........."
+echo "Stopping Rabbit MQ .........."
 docker-compose -f rabbitmq/docker-compose.yaml down
 
 Rem echo "Stopping Cloud Foundary UAA .........."
