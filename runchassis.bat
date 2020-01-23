@@ -27,12 +27,11 @@ docker-compose -f mysql/docker-compose.yaml up -d
 echo "Starting vault.........."
 docker-compose -f vaultroot/docker-compose.yaml up -d
 
-
 echo "Starting Rabbit MQ .........."
 docker-compose -f rabbitmq/docker-compose.yaml up -d
 
 echo "Starting Cloud Foundary UAA .........."
 docker build --tag uaa uaa/.
-docker run -p 8888:8090 --name=uaa uaa
+docker run --network ms-chassis-nw -d -p 8888:8090 --name=uaa uaa
 
 echo "*** CHASSIS STARTED ***"
