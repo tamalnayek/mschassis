@@ -1,40 +1,56 @@
-echo off
+@echo off
+setlocal enabledelayedexpansion
 
+SET baseoption=%1
 echo "Starting docker network........."
-docker network create ms-chassis-nw
+REM docker network create ms-chassis-nw
 
-echo "Starting consul.........."
-docker-compose -f consul/docker-compose.yaml up -d
+IF /I "!baseoption!"=="all" (
+   echo "All chassis services would be installed......"
+) ELSE (
+	SET baseoption=some
+	echo "Individual services would need user input......"
+)
+set SERVICESFILE=chassisservices
+REM call consul/start %baseoption%
+REM call zipkin/start %baseoption%
+for /F "usebackq tokens=* delims=" %%A in (%SERVICESFILE%) do (
+    set the_line=%%A
+	REM echo %%A
+    for /F "tokens=1,2,3,4 delims=|"  %%1 in ("%%A") DO ( 
+		  set _service_=%%1
+		  set _climessage_=%%2
+		  set _servicecommand_=%%3
+		  set _active_=%%4
+		  
+		 REM echo %%1 , %%2, %%3, %%4
+		  
+			SET installservice=""
+			SET servicecli="'
+			IF /I NOT "!baseoption!"=="all" (
+				set /p servicecli= %%2
+				REM echo "post set servicecli !servicecli!"
+			)
 
-echo "Starting zipkin.........."
-docker-compose -f zipkin/docker-compose.yaml up -d
+			IF /I "!servicecli!"=="y" (
+				echo "servicecli y"
+				SET installservice=y
+				REM echo "intermediate 1 INSTALLCOINSUL !installservice!"
+			)
+			IF /I "!baseoption!"=="all" (
+				REM echo "baseoption y"
+				SET installservice=y
+				REM echo "intermediate 2 INSTALLCOINSUL !installservice!"
+			)
+			REM echo "Final INSTALLCOINSUL !installservice!"
 
-echo "Starting jenkins.........."
-docker-compose -f jenkins/docker-compose.yaml up -d
+			IF /I "!installservice!"=="y" (
+				echo "Starting %%1 >>>"
+				call %%3
+			)
+	)
+)
 
-echo "Starting prometheus.........."
-docker-compose -f prometheus/docker-compose.yaml up -d
 
-echo "Starting grafana.........."
-docker-compose -f grafana/docker-compose.yaml up -d
-
-echo "Starting mongo DB.........."
-docker-compose -f mongodb/docker-compose.yaml up -d
-
-echo "Starting mySQL DB.........."
-docker-compose -f mysql/docker-compose.yaml up -d
-
-echo "Starting vault.........."
-docker-compose -f vaultroot/docker-compose.yaml up -d
-
-echo "Starting Rabbit MQ .........."
-docker-compose -f rabbitmq/docker-compose.yaml up -d
-
-echo "Starting Kafka .........."
-docker-compose -f kafka/docker-compose.yaml up -d --scale kafka=3
-
-Rem echo "Starting Cloud Foundary UAA .........."
-Rem docker build --tag uaa uaa/.
-Rem docker run --network ms-chassis-nw -d -p 8888:8090 --name=uaa uaa
-
+@echo:
 echo "*** CHASSIS STARTED ***"
