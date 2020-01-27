@@ -16,5 +16,8 @@ grafana:
     - http://192.168.99.101:3000  (admin/secret)
 rabbit MQ:
     - http://192.168.99.101:15672/ (guest/guest)
+Kafka:
+    - brokers : 192.168.99.101:9094, 192.168.99.101:9095, 192.168.99.101:9096
+    - zookeeper: 192.168.99.101:2181
 uaa:
     - http://localhost:8888/uaa/login
