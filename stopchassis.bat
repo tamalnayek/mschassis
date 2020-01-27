@@ -26,6 +26,9 @@ docker-compose -f vaultroot/docker-compose.yaml down
 echo "Stopping Rabbit MQ .........."
 docker-compose -f rabbitmq/docker-compose.yaml down
 
+echo "Stopping Kafka .........."
+docker-compose -f kafka/docker-compose.yaml down
+
 Rem echo "Stopping Cloud Foundary UAA .........."
 Rem docker container stop uaa
 Rem docker container rm uaa

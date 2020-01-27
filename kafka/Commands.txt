@@ -28,8 +28,8 @@ controlled.shutdown.enable=true
 Auto Leader Rebalance :
 auto.leader.rebalance.enable=true
 
-kafka-console-consumer --bootstrap-server host.docker.internal:9094 --topic w-events --from-beginning
-kafka-console-producer --broker-list host.docker.internal:9094 --topic x-events
+kafka-console-consumer --bootstrap-server host.kafka:9094 --topic x-events --from-beginning
+kafka-console-producer --broker-list host.kafka:9094 --topic x-events
 
 
 For reference, here are the stats on one of LinkedIn's busiest clusters (at peak):
