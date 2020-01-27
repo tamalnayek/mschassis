@@ -1,4 +1,5 @@
 @echo off
+cls
 setlocal enabledelayedexpansion
 
 SET baseoption=%1
@@ -14,6 +15,8 @@ IF /I "!baseoption!"=="all" (
 set SERVICESFILE=chassisservices
 REM call consul/start %baseoption%
 REM call zipkin/start %baseoption%
+
+
 for /F "usebackq tokens=* delims=" %%A in (%SERVICESFILE%) do (
     set the_line=%%A
 	REM echo %%A
@@ -33,7 +36,7 @@ for /F "usebackq tokens=* delims=" %%A in (%SERVICESFILE%) do (
 			)
 
 			IF /I "!servicecli!"=="y" (
-				echo "servicecli y"
+				REM echo "servicecli y"
 				SET installservice=y
 				REM echo "intermediate 1 INSTALLCOINSUL !installservice!"
 			)
