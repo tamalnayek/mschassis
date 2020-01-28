@@ -70,7 +70,7 @@ IF /I "!baseoption!"=="all" (
 )
 IF /I "!installservice!"=="y" (
 	set /p vaulttoken=Enter Vault Token:
-	echo configserver_vault_token=!vaulttoken! >> configserver/.env
+	echo configserver.vault.token=!vaulttoken! >> configserver/.env
 	REM SET configserver_vault_token=!vaulttoken!
 	docker-compose -f configserver/docker-compose.yaml up -d
 )
