@@ -4,7 +4,7 @@ setlocal enabledelayedexpansion
 
 SET baseoption=%1
 echo "Starting docker network........."
-REM docker network create ms-chassis-nw
+docker network create ms-chassis-nw
 
 IF /I "!baseoption!"=="all" (
    echo "All chassis services would be installed......"
@@ -53,6 +53,28 @@ for /F "usebackq tokens=* delims=" %%A in (%SERVICESFILE%) do (
 			)
 	)
 )
+
+REM Install Cloud Config Service	
+SET installservice=""
+SET servicecli="'
+IF /I NOT "!baseoption!"=="all" (
+	set /p servicecli="Config Server(Y/N):"
+	REM echo "post set servicecli !servicecli!"
+)
+
+IF /I "!servicecli!"=="y" (
+	SET installservice=y
+)
+IF /I "!baseoption!"=="all" (
+	SET installservice=y
+)
+IF /I "!installservice!"=="y" (
+	set /p vaulttoken=Enter Vault Token:
+	echo configserver_vault_token=!vaulttoken! >> configserver/.env
+	REM SET configserver_vault_token=!vaulttoken!
+	docker-compose -f configserver/docker-compose.yaml up -d
+)
+			
 
 
 @echo:
