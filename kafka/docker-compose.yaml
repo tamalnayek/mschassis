@@ -22,3 +22,8 @@ services:
       LOG_CLEANUP_POLICY: compact
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      
+networks:
+ default:
+  external:
+   name: ms-chassis-nw
