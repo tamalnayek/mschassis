@@ -110,6 +110,24 @@ IF /I "!baseoption!"=="all" (
 IF /I "!installservice!"=="y" (
 		docker-compose -f cloudconfigbus/docker-compose.yaml up -d
 )
+
+REM Install Cloud Config Turbine
+SET installservice=""
+SET servicecli="'
+IF /I NOT "!baseoption!"=="all" (
+	set /p servicecli="Turbine (Y/N):"
+	REM echo "post set servicecli !servicecli!"
+)
+
+IF /I "!servicecli!"=="y" (
+	SET installservice=y
+)
+IF /I "!baseoption!"=="all" (
+	SET installservice=y
+)
+IF /I "!installservice!"=="y" (
+		docker-compose -f turbine/docker-compose.yaml up -d
+)
 					
 
 
