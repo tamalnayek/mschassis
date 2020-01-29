@@ -1,8 +1,10 @@
 version: "3.2"
 services:
   rabbitmq-master:
-    #build: .
-    image: rabbitmq:3-management
+    build: 
+        context: .
+        dockerfile: Dockerfile
+    #image: rabbitmq:3-management
     ports:
      - "15672:15672"
      - "5672:5672"
@@ -13,19 +15,21 @@ services:
     environment:
         RABBITMQ_ERLANG_COOKIE: "secret string"
         RABBITMQ_NODENAME:  "rabbitmq-master"
-    volumes:
-      - ./config/rabbitmq.config:/etc/rabbitmq/rabbitmq.config
-      - ./config/definitions.json:/etc/rabbitmq/definitions.json
+    #volumes:
+    #  - ./config/rabbitmq.config:/etc/rabbitmq/rabbitmq.config
+    #  - ./config/definitions.json:/etc/rabbitmq/definitions.json
         
   rabbitmq-worker:
-    #build: .
-    image: rabbitmq:3-management
+    build: 
+        context: .
+        dockerfile: Dockerfile
+    #image: rabbitmq:3-management
     environment:
         RABBITMQ_ERLANG_COOKIE: "secret string"
         RABBITMQ_NODENAME:  "rabbitmq-worker"
-    volumes:
-      - ./config/rabbitmq.config:/etc/rabbitmq/rabbitmq.config
-      - ./config/definitions.json:/etc/rabbitmq/definitions.json
+    #volumes:
+    #  - ./config/rabbitmq.config:/etc/rabbitmq/rabbitmq.config
+   #   - ./config/definitions.json:/etc/rabbitmq/definitions.json
     depends_on:
      - rabbitmq-master
  

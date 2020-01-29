@@ -1,0 +1,15 @@
+version: '3.2'
+
+services:
+  cloudconfigbus:
+    image: kapilshekharraina/cloudconfigbus
+    container_name: cloudconfigbus
+    environment:
+        - cloudconfigbus.activeprofiles=startup, qa
+    ports:
+      - "8899:8899"
+ 
+networks:
+ default:
+  external:
+   name: ms-chassis-nw

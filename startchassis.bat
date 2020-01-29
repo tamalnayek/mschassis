@@ -92,7 +92,25 @@ IF /I "!baseoption!"=="all" (
 IF /I "!installservice!"=="y" (
 		docker-compose -f eureka/docker-compose.yaml up -d
 )
-			
+
+REM Install Cloud Config Bud
+SET installservice=""
+SET servicecli="'
+IF /I NOT "!baseoption!"=="all" (
+	set /p servicecli="Cloud Config Bus (Y/N):"
+	REM echo "post set servicecli !servicecli!"
+)
+
+IF /I "!servicecli!"=="y" (
+	SET installservice=y
+)
+IF /I "!baseoption!"=="all" (
+	SET installservice=y
+)
+IF /I "!installservice!"=="y" (
+		docker-compose -f cloudconfigbus/docker-compose.yaml up -d
+)
+					
 
 
 @echo:
