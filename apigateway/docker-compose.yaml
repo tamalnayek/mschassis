@@ -1,0 +1,16 @@
+version: '3.2'
+
+services:
+  apigateway:
+    image: kapilshekharraina/apigateway
+    container_name: apigateway
+    environment:
+        - apigateway.activeprofiles=startup, qa
+    ports:
+      - "8080:8080"
+      - "8854:8854"
+ 
+networks:
+ default:
+  external:
+   name: ms-chassis-nw

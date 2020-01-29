@@ -42,6 +42,12 @@ docker-compose -f eureka/docker-compose.yaml down
 echo "Stopping cloud bus .........."
 docker-compose -f cloudconfigbus/docker-compose.yaml down
 
+echo "Stopping Turbine .........."
+docker-compose -f turbine/docker-compose.yaml down
+
+echo "Stopping API Gateway .........."
+docker-compose -f apigateway/docker-compose.yaml down
+
 echo "Prunning all containers.........."
 docker container prune --force
 

@@ -25,5 +25,9 @@ eureka:
     -  192.168.99.101:8761,8762
 cloudconfigbus:
     -  192.168.99.101:8899
+turbine:
+    -  192.168.99.101:9093
+apigateway:
+    -  192.168.99.101:8080
 uaa:
     - http://localhost:8888/uaa/login

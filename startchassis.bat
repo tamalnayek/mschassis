@@ -128,6 +128,24 @@ IF /I "!baseoption!"=="all" (
 IF /I "!installservice!"=="y" (
 		docker-compose -f turbine/docker-compose.yaml up -d
 )
+
+REM Install API GATEWAY
+SET installservice=""
+SET servicecli="'
+IF /I NOT "!baseoption!"=="all" (
+	set /p servicecli="API Gateway (Y/N):"
+	REM echo "post set servicecli !servicecli!"
+)
+
+IF /I "!servicecli!"=="y" (
+	SET installservice=y
+)
+IF /I "!baseoption!"=="all" (
+	SET installservice=y
+)
+IF /I "!installservice!"=="y" (
+		docker-compose -f apigateway/docker-compose.yaml up -d
+)
 					
 
 
