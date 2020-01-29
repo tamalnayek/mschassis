@@ -1,0 +1,31 @@
+version: "3"
+services:
+
+  eurekaA:
+    #build: .
+    image: kapilshekharraina/eurekaserver:latest
+    depends_on:
+    - eurekaB
+    ports:
+     - "8761:8761"
+    environment:
+        eureka.server.activeprofiles: startup, qa
+        eureka.server.port: "8761"
+        eureka.server.hostname: "eurekaA" 
+        eureka.peer.url: "http://eurekaA:8762/eureka"
+    
+  eurekaB:
+    image: kapilshekharraina/eurekaserver:latest
+    #image: 
+    ports:
+     - "8762:8762"
+    environment:
+        eureka.server.activeprofiles: startup, qa
+        eureka.server.port: "8762"
+        eureka.server.hostname: "eurekaB" 
+        eureka.peer.url: "http://eurekaSrvA:8761/eureka"
+
+networks:
+ default:
+  external:
+   name: ms-chassis-nw

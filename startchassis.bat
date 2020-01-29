@@ -74,6 +74,24 @@ IF /I "!installservice!"=="y" (
 	REM SET configserver_vault_token=!vaulttoken!
 	docker-compose -f configserver/docker-compose.yaml up -d
 )
+
+REM Install Cloud Eureka	
+SET installservice=""
+SET servicecli="'
+IF /I NOT "!baseoption!"=="all" (
+	set /p servicecli="Eureka Service Discovery (Y/N):"
+	REM echo "post set servicecli !servicecli!"
+)
+
+IF /I "!servicecli!"=="y" (
+	SET installservice=y
+)
+IF /I "!baseoption!"=="all" (
+	SET installservice=y
+)
+IF /I "!installservice!"=="y" (
+		docker-compose -f eureka/docker-compose.yaml up -d
+)
 			
 
 

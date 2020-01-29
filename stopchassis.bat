@@ -33,9 +33,11 @@ Rem echo "Stopping Cloud Foundary UAA .........."
 Rem docker container stop uaa
 Rem docker container rm uaa
 
-echo "Stopping Config Server MQ .........."
+echo "Stopping Config Server .........."
 docker-compose -f configserver/docker-compose.yaml down
 
+echo "Stopping Eureka Server .........."
+docker-compose -f eureka/docker-compose.yaml down
 
 echo "Prunning all containers.........."
 docker container prune --force
