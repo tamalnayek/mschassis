@@ -23,5 +23,7 @@ cloudconfigserver:
     -  192.168.99.101:8888
 eureka:
     -  192.168.99.101:8761,8762
+cloudconfigbus:
+    -  192.168.99.101:8899
 uaa:
     - http://localhost:8888/uaa/login
