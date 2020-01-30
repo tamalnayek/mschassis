@@ -3,7 +3,7 @@ version: '3.2'
 services:
   cloudconfigbus:
     image: kapilshekharraina/cloudconfigbus
-    container_name: cloudconfigbus
+    #container_name: cloudconfigbus
     environment:
         - cloudconfigbus.activeprofiles=startup, qa
     ports:

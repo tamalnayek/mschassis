@@ -6,7 +6,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: prometheus
+    #container_name: prometheus
     volumes:
       #- ./config:/etc/prometheus
       - ./data:/prometheus

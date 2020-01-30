@@ -3,7 +3,7 @@ version: '3.2'
 services:
   cloudconfigbus:
     image: kapilshekharraina/turbine
-    container_name: turbine
+    #container_name: turbine
     environment:
         - turbine.activeprofiles=startup, qa
     ports:

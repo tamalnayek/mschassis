@@ -2,12 +2,12 @@ version: '3.2'
 services:
   zookeeper:
     image: wurstmeister/zookeeper
-    container_name: zookeeper
+    #container_name: zookeeper
     ports:
       - "2181:2181"
   kafka:
     image: wurstmeister/kafka
-    container_name: kafka
+    #container_name: kafka
     ports:
       - "9094-9096:9094"
       #  published: "9094-9096"

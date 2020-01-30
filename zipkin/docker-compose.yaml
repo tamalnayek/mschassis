@@ -13,7 +13,7 @@ services:
   # instrumentation can send trace data to. Scribe is enabled by default.
   zipkin:
     image: openzipkin/zipkin
-    container_name: zipkin
+    #container_name: zipkin
 
     # Environment settings are defined here https://github.com/openzipkin/zipkin/blob/master/zipkin-server/README.md#environment-variables
     environment:
