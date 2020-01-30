@@ -3,6 +3,7 @@ services:
   db:
     image: mysql
     restart: always
+    container_name: mysql
     environment:
       MYSQL_DATABASE: 'db_mysql_default'
       # So you don't have to use root, but you can if you like

@@ -4,6 +4,7 @@ services:
   eurekaA:
     #build: .
     image: kapilshekharraina/eurekaserver:latest
+    container_name: eurekaA
     depends_on:
     - eurekaB
     ports:
@@ -16,6 +17,7 @@ services:
     
   eurekaB:
     image: kapilshekharraina/eurekaserver:latest
+    container_name: eurekaB
     #image: 
     ports:
      - "8762:8762"

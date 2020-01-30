@@ -4,6 +4,7 @@ services:
     build: 
         context: .
         dockerfile: Dockerfile
+    container_name: rabbitmq-master
     #image: rabbitmq:3-management
     ports:
      - "15672:15672"
@@ -23,6 +24,7 @@ services:
     build: 
         context: .
         dockerfile: Dockerfile
+    container_name: rabbitmq-worker
     #image: rabbitmq:3-management
     environment:
         RABBITMQ_ERLANG_COOKIE: "secret string"
