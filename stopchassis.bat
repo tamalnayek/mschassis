@@ -21,7 +21,7 @@ echo "Stopping mySQL DB.........."
 docker-compose -f mysql/docker-compose.yaml down
 
 echo "Stopping vault.........."
-docker-compose -f vaultroot/docker-compose.yaml down
+REM docker-compose -f vaultroot/docker-compose.yaml down
 
 echo "Stopping Rabbit MQ .........."
 docker-compose -f rabbitmq/docker-compose.yaml down
