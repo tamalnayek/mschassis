@@ -20,6 +20,9 @@ docker-compose -f mongodb/docker-compose.yaml down
 echo "Stopping mySQL DB.........."
 docker-compose -f mysql/docker-compose.yaml down
 
+echo "Stopping Redis.........."
+docker-compose -f redis/docker-compose.yaml down
+
 echo "Stopping vault.........."
 REM docker-compose -f vaultroot/docker-compose.yaml down
 
