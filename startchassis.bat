@@ -69,10 +69,14 @@ IF /I "!baseoption!"=="all" (
 	SET installservice=y
 )
 IF /I "!installservice!"=="y" (
-	set /p vaulttoken=Enter Vault Token:
-	echo configserver.vault.token=!vaulttoken! >> configserver/.env
-	REM SET configserver_vault_token=!vaulttoken!
+	
+	set /p vaulttoken="Set Vault Token in env file (key : configserver.vault.token) and press any key to continue...."
+	REM echo configserver.vault.token.cli=!vaulttoken! >> configserver/.env
+	REM set configserver_vault_token_cli=!vaulttoken!
 	docker-compose -f configserver/docker-compose.yaml up -d
+	REM sleep 10
+	REM docker-compose -f configserver/docker-compose.yaml restart
+	
 )
 
 REM Install Cloud Eureka	
