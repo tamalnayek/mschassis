@@ -1,21 +1,74 @@
 @echo off
-cls
 setlocal enabledelayedexpansion
+SET serviceslist[0]=apigateway
+SET serviceslist[1]=cloudconfigbus 
+SET serviceslist[2]=configserver
+SET serviceslist[3]=consul
+SET serviceslist[4]=elk
+SET serviceslist[5]=eureka
+SET serviceslist[6]=grafana 
+SET serviceslist[7]=jenkins 
+SET serviceslist[8]=kafka
+SET serviceslist[9]=mongodb
+SET serviceslist[10]=mysql
+SET serviceslist[11]=prometheus
+SET serviceslist[12]=rabbitmq
+SET serviceslist[13]=redis
+SET serviceslist[14]=turbine
+SET serviceslist[15]=uaa
+SET serviceslist[16]=vault
+SET serviceslist[17]=zipkin
 
 SET baseoption=%1
-echo "Starting docker network........."
-docker network create ms-chassis-nw
+
+IF /I "!baseoption!"=="help" (
+   goto usage
+)
+IF /I "!baseoption!"=="services" (
+	goto servicelisting
+)
+
+IF /I "!baseoption!"=="-s" (
+	SET insallthisservice=%2
+	SET insallthisservicevalid=N
+	for /l %%n in (0,1,17) do ( 
+		REM echo "!insallthisservice!" --- "!serviceslist[%%n]!"
+		IF  /I !insallthisservice!==!serviceslist[%%n]! (
+			SET insallthisservicevalid=Y
+		)
+	)
+	IF /I "!insallthisservicevalid!"=="Y" (
+			IF /I !insallthisservice!==configserver (
+				set /p vaulttoken="Set Vault Token in env file (key : configserver.vault.token) and press any key to continue...."
+			)
+			echo Installing !insallthisservice! .....
+			docker-compose -f !insallthisservice!/docker-compose.yaml up -d
+	) ELSE (
+		echo Invalid Service Name
+		goto servicelisting  
+	)
+	goto end
+)
 
 IF /I "!baseoption!"=="all" (
    echo "All chassis services would be installed......"
 ) ELSE (
-	SET baseoption=some
-	echo "Individual services would need user input......"
+	IF /I NOT "!baseoption!"=="" (
+		goto usage
+	)
+	ELSE (
+		SET baseoption=some
+		echo "Individual services would need user input......"
+	)
 )
+
+
+cls
 set SERVICESFILE=chassisservices
 REM call consul/start %baseoption%
 REM call zipkin/start %baseoption%
-
+echo "Starting docker network........."
+docker network create ms-chassis-nw
 
 for /F "usebackq tokens=* delims=" %%A in (%SERVICESFILE%) do (
     set the_line=%%A
@@ -150,8 +203,30 @@ IF /I "!baseoption!"=="all" (
 IF /I "!installservice!"=="y" (
 		docker-compose -f apigateway/docker-compose.yaml up -d
 )
+
+goto end
 					
+:usage
+echo Usage startchassis [OPTION]
+echo OPTION
+echo help : Displays usage
+echo none : i.e. pressing enter after startchassis command would result prompt for installation of individual service
+echo all :  install all services. For config server,the installation would prompt for confirmation of vault token in .env file for config server
+echo services : list all chassis services
+echo -s servicename : install only provided service
+goto end
+
+:servicelisting
+echo Service Names :
+   for /l %%n in (0,1,17) do ( 
+		echo !serviceslist[%%n]!
+	)
+	echo To install a service use 
+	echo startchassis -s servicename
+    goto end
 
 
-@echo:
-echo "*** CHASSIS STARTED ***"
+
+:end
+echo *** END OF INSTALLATION ***
+

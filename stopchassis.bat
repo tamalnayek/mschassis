@@ -1,4 +1,58 @@
 echo off
+
+setlocal enabledelayedexpansion
+SET serviceslist[0]=apigateway
+SET serviceslist[1]=cloudconfigbus 
+SET serviceslist[2]=configserver
+SET serviceslist[3]=consul
+SET serviceslist[4]=elk
+SET serviceslist[5]=eureka
+SET serviceslist[6]=grafana 
+SET serviceslist[7]=jenkins 
+SET serviceslist[8]=kafka
+SET serviceslist[9]=mongodb
+SET serviceslist[10]=mysql
+SET serviceslist[11]=prometheus
+SET serviceslist[12]=rabbitmq
+SET serviceslist[13]=redis
+SET serviceslist[14]=turbine
+SET serviceslist[15]=uaa
+SET serviceslist[16]=vault
+SET serviceslist[17]=zipkin
+
+SET baseoption=%1
+
+IF /I "!baseoption!"=="help" (
+   goto usage
+)
+IF /I "!baseoption!"=="services" (
+	goto servicelisting
+)
+
+IF /I "!baseoption!"=="-s" (
+	SET uninsallthisservice=%2
+	SET uninsallthisservicevalid=N
+	for /l %%n in (0,1,17) do ( 
+		REM echo "!uninsallthisservice!" --- "!serviceslist[%%n]!"
+		IF  /I !uninsallthisservice!==!serviceslist[%%n]! (
+			SET uninsallthisservicevalid=Y
+		)
+	)
+	IF /I "!uninsallthisservicevalid!"=="Y" (
+
+			echo Stopping !uninsallthisservice! .....
+			docker-compose -f !uninsallthisservice!/docker-compose.yaml down
+	) ELSE (
+		echo Invalid Service Name
+		goto servicelisting  
+	)
+	goto end
+)
+
+IF /I NOT "!baseoption!"=="" (
+	goto usage
+)
+
 echo "Stopping consul.........."
 docker-compose -f consul/docker-compose.yaml down
 
@@ -24,7 +78,7 @@ echo "Stopping Redis.........."
 docker-compose -f redis/docker-compose.yaml down
 
 echo "Stopping vault.........."
-REM docker-compose -f vaultroot/docker-compose.yaml down
+REM docker-compose -f vault/docker-compose.yaml down
 
 echo "Stopping Rabbit MQ .........."
 docker-compose -f rabbitmq/docker-compose.yaml down
@@ -61,6 +115,27 @@ docker network rm ms-chassis-nw
 echo "Prunning all networks.........."
 docker network prune --force
 
+goto end
+					
+:usage
+echo Usage stopchassis [OPTION]
+echo OPTION
+echo help : Displays usage
+echo none : i.e. pressing enter after startchassis command would attemp to stop and remove all services
+echo services : list all chassis services
+echo -s servicename : removes only provided service
+goto end
+
+:servicelisting
+echo Service Names :
+   for /l %%n in (0,1,17) do ( 
+		echo !serviceslist[%%n]!
+	)
+	echo To uninstall a service use 
+	echo stopchassis -s servicename
+    goto end
 
 
-echo "*** CHASSIS REMOVED ***"
+
+:end
+echo *** END OF UNINSTALLATION ***
