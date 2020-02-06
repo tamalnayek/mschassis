@@ -1,4 +1,4 @@
-echo off
+@echo off
 
 setlocal enabledelayedexpansion
 SET serviceslist[0]=apigateway
@@ -124,7 +124,7 @@ echo help : Displays usage
 echo none : i.e. pressing enter after startchassis command would attemp to stop and remove all services
 echo services : list all chassis services
 echo -s servicename : removes only provided service
-goto end
+goto endhelp
 
 :servicelisting
 echo Service Names :
@@ -139,3 +139,7 @@ echo Service Names :
 
 :end
 echo *** END OF UNINSTALLATION ***
+
+:endhelp
+
+

@@ -214,7 +214,7 @@ echo none : i.e. pressing enter after startchassis command would result prompt f
 echo all :  install all services. For config server,the installation would prompt for confirmation of vault token in .env file for config server
 echo services : list all chassis services
 echo -s servicename : install only provided service
-goto end
+goto endhelp
 
 :servicelisting
 echo Service Names :
@@ -229,4 +229,7 @@ echo Service Names :
 
 :end
 echo *** END OF INSTALLATION ***
+
+:endhelp
+
 
