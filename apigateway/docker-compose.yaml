@@ -1,11 +1,13 @@
-version: '3.2'
+version: '2.2'
 
 services:
   apigateway:
     image: kapilshekharraina/apigateway
+    cpu_percent: 10
+    mem_reservation: 75m
     #container_name: apigateway
     environment:
-        - apigateway.activeprofiles=startup, qa
+        - apigateway.activeprofiles=startup, dev
     ports:
       - "8080:8080"
       - "8854:8854"

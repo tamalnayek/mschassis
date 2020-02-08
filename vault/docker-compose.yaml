@@ -1,12 +1,14 @@
 #https://www.bogotobogo.com/DevOps/Docker/Docker-Vault-Consul.php
-version: '3.6'
+version: '2.2'
 services:
 
   vault:
     build:
       context: ./vault
       dockerfile: Dockerfile
-    container_name: vault
+    #container_name: vault
+    cpu_percent: 10
+    mem_reservation: 50m
     ports:
       - 8200:8200
     #volumes:

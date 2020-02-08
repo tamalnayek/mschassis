@@ -1,13 +1,13 @@
 @echo off
 setlocal enabledelayedexpansion
 SET serviceslist[0]=apigateway
-SET serviceslist[1]=cloudconfigbus 
+SET serviceslist[1]=cloudconfigbus
 SET serviceslist[2]=configserver
 SET serviceslist[3]=consul
 SET serviceslist[4]=elk
 SET serviceslist[5]=eureka
-SET serviceslist[6]=grafana 
-SET serviceslist[7]=jenkins 
+SET serviceslist[6]=grafana
+SET serviceslist[7]=jenkins
 SET serviceslist[8]=kafka
 SET serviceslist[9]=mongodb
 SET serviceslist[10]=mysql
@@ -41,6 +41,8 @@ IF /I "!baseoption!"=="-s" (
 			IF /I !insallthisservice!==configserver (
 				set /p vaulttoken="Set Vault Token in env file (key : configserver.vault.token) and press any key to continue...."
 			)
+			echo "Starting docker network........."
+			docker network create ms-chassis-nw
 			echo Installing !insallthisservice! .....
 			docker-compose -f !insallthisservice!/docker-compose.yaml up -d
 	) ELSE (

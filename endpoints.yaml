@@ -1,33 +1,35 @@
 vault:
-    - http://192.168.99.101:8200/ui/vault/auth
+    - http://localhost:8200/ui/vault/auth
 consul:
-    - http://192.168.99.101:8500/ui
+    - http://localhost:8500/ui
 zipkin:
-    - http://192.168.99.101:9411/
+    - http://localhost:9411/
 jenkins:
-    - http://192.168.99.101:8900
+    - http://localhost:8900
 mongo:
-    - 192.168.99.101:27017
+    - localhost:27017
 mysql:
-    - 192.168.99.101:3306
+    - localhost:3306
+redis:
+    - localhost:6379
 prometheus:
-    - http://192.168.99.101:9090
+    - http://localhost:9090
 grafana:
-    - http://192.168.99.101:3000  (admin/secret)
+    - http://localhost:3000  (admin/secret)
 rabbit MQ:
-    - http://192.168.99.101:15672/ (guest/guest)
+    - http://localhost:15672/ (guest/guest)
 Kafka:
-    - brokers : 192.168.99.101:9094, 192.168.99.101:9095, 192.168.99.101:9096
-    - zookeeper: 192.168.99.101:2181
+    - brokers : localhost:9094, localhost:9095, localhost:9096
+    - zookeeper: localhost:2181
 cloudconfigserver:
-    -  192.168.99.101:8888
+    -  localhost:8888
 eureka:
-    -  192.168.99.101:8761,8762
+    -  localhost:8761,8762
 cloudconfigbus:
-    -  192.168.99.101:8899
+    -  localhost:8899
 turbine:
-    -  192.168.99.101:9093
+    -  localhost:9093
 apigateway:
-    -  192.168.99.101:8080
+    -  localhost:8080
 uaa:
     - http://localhost:8888/uaa/login

@@ -1,8 +1,10 @@
-version: "2"
+version: "2.2"
 services:
   mongo:
     image: mongo
     #container_name: mongo
+    cpu_percent: 10
+    mem_reservation: 150m
     restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: root

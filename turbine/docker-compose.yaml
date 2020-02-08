@@ -1,8 +1,10 @@
-version: '3.2'
+version: '2.2'
 
 services:
   cloudconfigbus:
     image: kapilshekharraina/turbine
+    cpu_percent: 10
+    mem_reservation: 50m
     #container_name: turbine
     environment:
         - turbine.activeprofiles=startup, qa

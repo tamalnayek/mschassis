@@ -1,4 +1,4 @@
-version: '3.2'
+version: '2.2'
 #volumes:
 #   prometheus_data: {}
 services:
@@ -6,6 +6,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    cpu_percent: 10
+    mem_reservation: 150m
     #container_name: prometheus
     volumes:
       #- ./config:/etc/prometheus

@@ -2,13 +2,13 @@
 
 setlocal enabledelayedexpansion
 SET serviceslist[0]=apigateway
-SET serviceslist[1]=cloudconfigbus 
+SET serviceslist[1]=cloudconfigbus
 SET serviceslist[2]=configserver
 SET serviceslist[3]=consul
 SET serviceslist[4]=elk
 SET serviceslist[5]=eureka
-SET serviceslist[6]=grafana 
-SET serviceslist[7]=jenkins 
+SET serviceslist[6]=grafana
+SET serviceslist[7]=jenkins
 SET serviceslist[8]=kafka
 SET serviceslist[9]=mongodb
 SET serviceslist[10]=mysql

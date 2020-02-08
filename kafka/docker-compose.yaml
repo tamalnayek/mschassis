@@ -1,8 +1,10 @@
-version: '3.2'
+version: '2.2'
 services:
   zookeeper:
     image: wurstmeister/zookeeper
     #container_name: zookeeper
+    cpu_percent: 10
+    mem_reservation: 150m
     ports:
       - "2181:2181"
   kafka:

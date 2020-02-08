@@ -1,8 +1,10 @@
-version: '3.3'
+version: '2.2'
 services:
   db:
     image: mysql
     restart: always
+    cpu_percent: 15
+    mem_reservation: 100m
     #container_name: mysql
     environment:
       MYSQL_DATABASE: 'db_mysql_default'

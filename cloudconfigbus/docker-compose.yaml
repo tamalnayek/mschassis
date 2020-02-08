@@ -1,8 +1,10 @@
-version: '3.2'
+version: '2.2'
 
 services:
   cloudconfigbus:
     image: kapilshekharraina/cloudconfigbus
+    cpu_percent: 10
+    mem_reservation: 75m
     #container_name: cloudconfigbus
     environment:
         - cloudconfigbus.activeprofiles=startup, qa

@@ -1,8 +1,10 @@
-version: '3.2'
+version: '2.2'
 
 services:
   cloudconfigserver:
     image: kapilshekharraina/cloudconfigserver
+    cpu_percent: 10
+    mem_reservation: 75m
     #container_name: cloudconfigserver
     env_file:
         - .env
