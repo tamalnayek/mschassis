@@ -1,0 +1,24 @@
+version: "3.2"
+
+services:
+  cloudconfigbus:
+    image: kapilshekharraina/turbine
+    deploy:
+      resources:
+        limits:
+          cpus: '0.10'
+          memory: 50M
+        reservations:
+          cpus: '0.10'
+          memory: 25M
+    #container_name: turbine
+    environment:
+        - turbine.activeprofiles=startup, qa
+    ports:
+      - "9093:9093"
+      - "8855:8855"
+ 
+networks:
+ default:
+  external:
+   name: ms-chassis-nw-swarm
