@@ -42,7 +42,7 @@ IF /I "!baseoption!"=="-s" (
 				set /p vaulttoken="Set Vault Token in env file (key : configserver.vault.token) and press any key to continue...."
 			)
 			echo "Initializing swarm ........."
-			docker swarm init
+			docker swarm init --advertise-addr=192.168.99.103
 			echo "Starting swarm network........."
 			docker network create --scope=swarm --driver=overlay ms-chassis-nw-swarm
 			echo Installing !insallthisservice! .....
@@ -71,7 +71,7 @@ IF /I "!baseoption!"=="all" (
 cls
 set SERVICESFILE=chassisservices
 echo "Initializing swarm ........."
-docker swarm init
+docker swarm 	init --advertise-addr=192.168.99.103
 echo "Starting docker network........."
 docker network create --scope=swarm --driver=overlay ms-chassis-nw-swarm
 

@@ -1,16 +1,16 @@
 version: '3.2'
 services:
-  db:
+  mysql:
     image: mysql
-    restart: always
-    deploy:
-      resources:
-        limits:
-          cpus: '0.15'
-          memory: 100M
-        reservations:
-          cpus: '0.10'
-          memory: 75M
+    #restart: always
+    #deploy:
+    #  resources:
+    #    limits:
+    #      cpus: '1.0'
+    #      memory: 750M
+    #   reservations:
+    #      cpus: '0.75'
+    #     memory: 500M
     #container_name: mysql
     environment:
       MYSQL_DATABASE: 'db_mysql_default'
@@ -37,7 +37,7 @@ services:
 #volumes:
 
 
-networks:
- default:
-  external:
-   name: ms-chassis-nw-swarm
+#networks:
+# default:
+ # external:
+  # name: ms-chassis-nw-swarm

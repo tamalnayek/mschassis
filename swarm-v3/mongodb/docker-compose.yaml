@@ -3,14 +3,15 @@ services:
   mongo:
     image: mongo
     #container_name: mongo
-    deploy:
-      resources:
-        limits:
-          cpus: '0.10'
-          memory: 150M
-        reservations:
-          cpus: '0.10'
-          memory: 100M
+    #deploy:
+    #  resources:
+    #    limits:
+    #      cpus: '1.0'
+    #      memory: 750M
+    #   reservations:
+    #      cpus: '0.75'
+    #     memory: 500M
+    #container_name: mysql
     restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: root

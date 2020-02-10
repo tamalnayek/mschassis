@@ -7,11 +7,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.10'
-          memory: 50M
+          cpus: '0.50'
+          memory: 750M
         reservations:
-          cpus: '0.10'
-          memory: 30M
+          cpus: '0.25'
+          memory: 500M
     #container_name: eurekaA
     depends_on:
     - eurekaB
@@ -28,11 +28,13 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.10'
-          memory: 50M
+          cpus: '0.50'
+          memory: 750M
         reservations:
-          cpus: '0.10'
-          memory: 30M
+          cpus: '0.25'
+          memory: 500M
+    depends_on:
+      - eurekaA
     #container_name: eurekaB
     #image: 
     ports:

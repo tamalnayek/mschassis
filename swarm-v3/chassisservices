@@ -4,7 +4,7 @@ Jenkins|Jenkins(Y/N):|docker stack deploy --compose-file jenkins/docker-compose.
 Prometheus|Prometheus(Y/N):|docker stack deploy --compose-file prometheus/docker-compose.yaml prometheus|A
 Grafana|Grafana(Y/N):|docker stack deploy --compose-file grafana/docker-compose.yaml grafana|A
 Mongodb|Mongodb(Y/N):|docker stack deploy --compose-file mongodb/docker-compose.yaml mongodb|A
-MySQL|MySQL(Y/N):|docker stack deploy --compose-file mysql/docker-compose.yaml mysql|A
+MySQL|MySQL(Y/N):|docker-compose -f mysql/docker-compose.yaml up -d|A
 Redis|Redis (Y/N):|docker stack deploy --compose-file redis/docker-compose.yaml redis|A
 Hashicorp Vault|Hashicorp Vault(Y/N):|docker stack deploy --compose-file vault/docker-compose.yaml vault|A
 Rabbit MQ|Rabbit MQ(Y/N):|docker stack deploy --compose-file rabbitmq/docker-compose.yaml rabbitmq|A
