@@ -4,8 +4,9 @@ services:
   redis:
     image: 'bitnami/redis:5.0'
     #container_name: redis
-    cpu_percent: 10
-    mem_reservation: 50m
+    mem_reservation: 50M
+    mem_limit: 100M
+    cpus: ".10"
     environment:
       # ALLOW_EMPTY_PASSWORD is recommended only for development.
       - ALLOW_EMPTY_PASSWORD=yes

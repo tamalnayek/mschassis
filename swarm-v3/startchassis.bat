@@ -44,7 +44,7 @@ IF /I "!baseoption!"=="-s" (
 			echo "Initializing swarm ........."
 			docker swarm init
 			echo "Starting swarm network........."
-			docker network create --scope=swarm ms-chassis-nw-swarm
+			docker network create --scope=swarm --driver=overlay ms-chassis-nw-swarm
 			echo Installing !insallthisservice! .....
 			docker stack deploy --compose-file !insallthisservice!/docker-compose.yaml !insallthisservice!
 			
@@ -73,7 +73,7 @@ set SERVICESFILE=chassisservices
 echo "Initializing swarm ........."
 docker swarm init
 echo "Starting docker network........."
-docker network create --scope=swarm ms-chassis-nw-swarm
+docker network create --scope=swarm --driver=overlay ms-chassis-nw-swarm
 
 for /F "usebackq tokens=* delims=" %%A in (%SERVICESFILE%) do (
     set the_line=%%A
@@ -233,7 +233,15 @@ echo Service Names :
 
 
 :end
+echo.
+echo STACKS
+echo ---------------------------------------------------------------------------------
 docker stack ls
+echo.
+echo SERVICES
+echo ---------------------------------------------------------------------------------
+docker service ls
+echo.
 echo *** END OF INSTALLATION ***
 
 :endhelp

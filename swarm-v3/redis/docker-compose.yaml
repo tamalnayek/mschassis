@@ -10,7 +10,7 @@ services:
           cpus: '0.10'
           memory: 50M
         reservations:
-          cpus: '0.10'
+          cpus: '0.05'
           memory: 20M
     environment:
       # ALLOW_EMPTY_PASSWORD is recommended only for development.

@@ -230,6 +230,11 @@ echo Service Names :
 
 
 :end
+echo.
+echo CONTAINERS
+echo ---------------------------------------------------------------------------------
+docker ps
+echo.
 echo *** END OF INSTALLATION ***
 
 :endhelp

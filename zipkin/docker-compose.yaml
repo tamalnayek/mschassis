@@ -13,8 +13,9 @@ services:
   # instrumentation can send trace data to. Scribe is enabled by default.
   zipkin:
     image: openzipkin/zipkin
-    cpu_percent: 10
-    mem_reservation: 75m
+    mem_reservation: 50M
+    mem_limit: 100M
+    cpus: ".10"
     #container_name: zipkin
 
     # Environment settings are defined here https://github.com/openzipkin/zipkin/blob/master/zipkin-server/README.md#environment-variables

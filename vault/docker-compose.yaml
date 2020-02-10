@@ -7,8 +7,11 @@ services:
       context: ./vault
       dockerfile: Dockerfile
     #container_name: vault
-    cpu_percent: 10
-    mem_reservation: 50m
+    
+    #cpu_percent: 10
+    mem_reservation: 75M
+    mem_limit: 100M
+    cpus: ".10"
     ports:
       - 8200:8200
     #volumes:

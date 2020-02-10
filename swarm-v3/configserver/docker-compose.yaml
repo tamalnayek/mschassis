@@ -7,10 +7,10 @@ services:
       resources:
         limits:
           cpus: '0.10'
-          memory: 75M
+          memory: 150M
         reservations:
           cpus: '0.10'
-          memory: 50M
+          memory: 100M
     #container_name: cloudconfigserver
     env_file:
         - .env
