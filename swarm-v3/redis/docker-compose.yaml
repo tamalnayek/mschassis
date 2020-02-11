@@ -7,11 +7,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.10'
-          memory: 50M
+          cpus: '0.50'
+          memory: 768M
         reservations:
-          cpus: '0.05'
-          memory: 20M
+          cpus: '0.25'
+          memory: 512M
     environment:
       # ALLOW_EMPTY_PASSWORD is recommended only for development.
       - ALLOW_EMPTY_PASSWORD=yes

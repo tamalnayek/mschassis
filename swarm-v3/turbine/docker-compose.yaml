@@ -1,19 +1,19 @@
 version: "3.2"
 
 services:
-  cloudconfigbus:
-    image: kapilshekharraina/turbine
+  turbine:
+    image: kapilshekharraina/turbine:latest 
     deploy:
       resources:
         limits:
-          cpus: '0.10'
-          memory: 50M
+          cpus: '0.75'
+          memory: 768M
         reservations:
-          cpus: '0.10'
-          memory: 25M
+          cpus: '0.50'
+          memory: 512M
     #container_name: turbine
     environment:
-        - turbine.activeprofiles=startup, qa
+        - turbine.activeprofiles=startup, dev
     ports:
       - "9093:9093"
       - "8855:8855"

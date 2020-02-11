@@ -2,15 +2,15 @@ version: '3.2'
 services:
   mysql:
     image: mysql
-    #restart: always
-    #deploy:
-    #  resources:
-    #    limits:
-    #      cpus: '1.0'
-    #      memory: 750M
-    #   reservations:
-    #      cpus: '0.75'
-    #     memory: 500M
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: '0.75'
+          memory: 768M
+        reservations:
+          cpus: '0.50'
+          memory: 512M
     #container_name: mysql
     environment:
       MYSQL_DATABASE: 'db_mysql_default'

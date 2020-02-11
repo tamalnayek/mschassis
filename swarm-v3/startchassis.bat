@@ -28,8 +28,16 @@ IF /I "!baseoption!"=="services" (
 	goto servicelisting
 )
 
+
 IF /I "!baseoption!"=="-s" (
+	
 	SET insallthisservice=%2
+	
+	SET swarmhost=%3
+	
+	IF /I "!swarmhost!"=="" (
+			goto usage
+	)
 	SET insallthisservicevalid=N
 	for /l %%n in (0,1,17) do ( 
 		REM echo "!insallthisservice!" --- "!serviceslist[%%n]!"
@@ -41,9 +49,9 @@ IF /I "!baseoption!"=="-s" (
 			IF /I !insallthisservice!==configserver (
 				set /p vaulttoken="Set Vault Token in env file (key : configserver.vault.token) and press any key to continue...."
 			)
-			echo "Initializing swarm ........."
-			docker swarm init --advertise-addr=192.168.99.103
-			echo "Starting swarm network........."
+			echo Initializing swarm on !swarmhost!
+			docker swarm init --advertise-addr=!swarmhost!
+			echo Starting swarm network.........
 			docker network create --scope=swarm --driver=overlay ms-chassis-nw-swarm
 			echo Installing !insallthisservice! .....
 			docker stack deploy --compose-file !insallthisservice!/docker-compose.yaml !insallthisservice!
@@ -56,12 +64,17 @@ IF /I "!baseoption!"=="-s" (
 )
 
 IF /I "!baseoption!"=="all" (
+	SET swarmhost=%2
+	IF /I "!swarmhost!"=="" (
+			goto usage
+	)
    echo "All chassis services would be installed......"
 ) ELSE (
-	IF /I NOT "!baseoption!"=="" (
+	IF /I "!baseoption!"=="" (
 		goto usage
 	)
 	ELSE (
+		SET swarmhost=!baseoption!
 		SET baseoption=some
 		echo "Individual services would need user input......"
 	)
@@ -70,8 +83,8 @@ IF /I "!baseoption!"=="all" (
 
 cls
 set SERVICESFILE=chassisservices
-echo "Initializing swarm ........."
-docker swarm 	init --advertise-addr=192.168.99.103
+echo Initializing swarm on !swarmhost!
+docker swarm 	init --advertise-addr=!swarmhost!
 echo "Starting docker network........."
 docker network create --scope=swarm --driver=overlay ms-chassis-nw-swarm
 
@@ -212,13 +225,15 @@ IF /I "!installservice!"=="y" (
 goto end
 					
 :usage
-echo Usage startchassis [OPTION]
-echo OPTION
+echo Usage startchassis [OPTION] [DOCKER-HOST]
+echo [OPTION]
 echo help : Displays usage
-echo none : i.e. pressing enter after startchassis command would result prompt for installation of individual service
 echo all :  install all services. For config server,the installation would prompt for confirmation of vault token in .env file for config server
 echo services : list all chassis services
 echo -s servicename : install only provided service
+echo.
+echo [DOCKER-HOST]
+echo host/ip of the docker machine where swarm needs to be iitialized.
 goto endhelp
 
 :servicelisting

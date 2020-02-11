@@ -10,11 +10,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.10'
-          memory: 150M
+          cpus: "1.0"
+          memory: 1024M
         reservations:
-          cpus: '0.10'
-          memory: 100M
+          cpus: "0.75"
+          memory: 768M  
     #container_name: prometheus
     volumes:
       #- ./config:/etc/prometheus
@@ -25,7 +25,7 @@ services:
     ports:
       - "9090:9090"
 
-networks:
- default:
-  external:
-   name: ms-chassis-nw-swarm
+#networks:
+# default:
+#  external:
+#   name: ms-chassis-nw-swarm

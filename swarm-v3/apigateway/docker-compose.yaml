@@ -2,15 +2,15 @@ version: '3.2'
 
 services:
   apigateway:
-    image: kapilshekharraina/apigateway
+    image: kapilshekharraina/apigateway:latest
     deploy:
       resources:
         limits:
-          cpus: '1'
-          memory: 1000M
+          cpus: '0.75'
+          memory: 768M
         reservations:
-          cpus: '0.50'
-          memory: 500M
+          cpus: '0.25'
+          memory: 512M
     #container_name: apigateway
     environment:
         - apigateway.activeprofiles=startup, dev

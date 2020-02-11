@@ -2,15 +2,15 @@ version: '3.2'
 
 services:
   cloudconfigbus:
-    image: kapilshekharraina/cloudconfigbus
+    image: kapilshekharraina/cloudconfigbus:latest
     deploy:
       resources:
         limits:
-          cpus: '0.10'
-          memory: 75M
+          cpus: '0.50'
+          memory: 768M
         reservations:
-          cpus: '0.10'
-          memory: 50M
+          cpus: '0.25'
+          memory: 512M
     environment:
         - cloudconfigbus.activeprofiles=startup, qa
     ports:

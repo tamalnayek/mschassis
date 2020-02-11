@@ -16,11 +16,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.50'
-          memory: 1000M
+          cpus: '0.75'
+          memory: 1024M
         reservations:
-          cpus: '0.20'
-          memory: 500M
+          cpus: '0.50'
+          memory: 512M
     #container_name: zipkin
 
     # Environment settings are defined here https://github.com/openzipkin/zipkin/blob/master/zipkin-server/README.md#environment-variables
