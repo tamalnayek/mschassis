@@ -1,20 +1,15 @@
-version: "3.2"
+version: "3.3"
 services:
   rabbitmq-master:
-     image: kapilshekharraina/rabbitmq:latest
-    #build: 
-    #    context: .
-    #    dockerfile: Dockerfile
+    image: kapilshekharraina/rabbitmq:latest
     deploy:
       resources:
         limits:
-          cpus: '0.10'
-          memory: 150M
+          cpus: '0.50'
+          memory: 768M
         reservations:
-          cpus: '0.10'
-          memory: 100M
-    #container_name: rabbitmq-master
-    #image: rabbitmq:3-management
+          cpus: '0.25'
+          memory: 512M
     ports:
      - "15672:15672"
      - "5672:5672"
@@ -37,11 +32,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.10'
-          memory: 150M
+          cpus: '0.50'
+          memory: 768M
         reservations:
-          cpus: '0.10'
-          memory: 100M
+          cpus: '0.25'
+          memory: 512M
     #container_name: rabbitmq-worker
     #image: rabbitmq:3-management
     environment:
