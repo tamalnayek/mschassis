@@ -1,7 +1,7 @@
 version: '3.2'
 services:
   jenkins:
-    image: kapilshekharraina/jenkins:latest
+    image: kapilshekharraina/jenkins:lts
     #build:
     #  context: .
     #  dockerfile: Dockerfile
@@ -9,11 +9,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.10'
-          memory: 100M
+          cpus: '0.75'
+          memory: 768M
         reservations:
-          cpus: '0.10'
-          memory: 75M
+          cpus: '0.50'
+          memory: 512M
     ports:
       - "8900:8080"
       - "50000:50000"

@@ -21,7 +21,7 @@ services:
     ports:
     - "27017:27017"
 
-networks:
- default:
-  external:
-   name: ms-chassis-nw-swarm
+#networks:
+# default:
+#  external:
+#   name: ms-chassis-nw-swarm

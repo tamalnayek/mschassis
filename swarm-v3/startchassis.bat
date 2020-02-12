@@ -169,22 +169,22 @@ IF /I "!installservice!"=="y" (
 )
 
 REM Install Cloud Config Bud
-SET installservice=""
-SET servicecli="'
-IF /I NOT "!baseoption!"=="all" (
-	set /p servicecli="Cloud Config Bus (Y/N):"
-	REM echo "post set servicecli !servicecli!"
-)
+REM SET installservice=""
+REM SET servicecli="'
+REM IF /I NOT "!baseoption!"=="all" (
+REM 	set /p servicecli="Cloud Config Bus (Y/N):"
+REM 	REM echo "post set servicecli !servicecli!"
+REM )
 
-IF /I "!servicecli!"=="y" (
-	SET installservice=y
-)
-IF /I "!baseoption!"=="all" (
-	SET installservice=y
-)
-IF /I "!installservice!"=="y" (
-		docker stack deploy --compose-file cloudconfigbus/docker-compose.yaml cloudconfigbus
-)
+REM IF /I "!servicecli!"=="y" (
+REM 	SET installservice=y
+REM )
+REM IF /I "!baseoption!"=="all" (
+REM 	SET installservice=y
+REM )
+REM IF /I "!installservice!"=="y" (
+REM 		docker stack deploy --compose-file cloudconfigbus/docker-compose.yaml cloudconfigbus
+REM )
 
 REM Install Cloud Config Turbine
 SET installservice=""

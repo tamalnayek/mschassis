@@ -1,8 +1,9 @@
 
 docker-compose -f docker-compose-swarm.yml up --scale kafka=2
 ===== TOPICS ======
-kafka-topics --create --bootstrap-server host.docker.internal:9095 --replication-factor 2 --partitions 3 --topic w-events
-kafka-topics --describe --bootstrap-server host.docker.internal:9095 --topic w-events
+kafka-topics --create --bootstrap-server host.kafka:9095 --replication-factor 2 --partitions 3 --topic w-events
+kafka-topics --describe --bootstrap-server host.kafka:9095 --topic T-DISCOUNTSTREAM
+
 kafka-topics --bootstrap-server host.docker.internal:9095 --alter --topic w-events  --partitions 3 //Kafka does not currently support reducing the number of partitions for a topic.
 kafka-topics --bootstrap-server host.docker.internal:9095 --delete --topic w-events
 kafka-topics --list --bootstrap-server host.docker.internal:9094
@@ -28,8 +29,9 @@ controlled.shutdown.enable=true
 Auto Leader Rebalance :
 auto.leader.rebalance.enable=true
 
-kafka-console-consumer --bootstrap-server host.kafka:9094 --topic x-events --from-beginning
-kafka-console-producer --broker-list host.kafka:9094 --topic x-events
+kafka-console-consumer --bootstrap-server host.kafka:9094 --topic T-DISCOUNTSTREAM --from-beginning
+
+kafka-console-producer --broker-list host.kafka:9094 --topic T-DISCOUNTSTREAM
 
 
 For reference, here are the stats on one of LinkedIn's busiest clusters (at peak):
