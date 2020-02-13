@@ -1,23 +1,23 @@
 @echo off
 setlocal enabledelayedexpansion
 SET serviceslist[0]=apigateway
-SET serviceslist[1]=cloudconfigbus
-SET serviceslist[2]=configserver
-SET serviceslist[3]=consul
-SET serviceslist[4]=elk
-SET serviceslist[5]=eureka
-SET serviceslist[6]=grafana
-SET serviceslist[7]=jenkins
-SET serviceslist[8]=kafka
-SET serviceslist[9]=mongodb
-SET serviceslist[10]=mysql
-SET serviceslist[11]=prometheus
-SET serviceslist[12]=rabbitmq
-SET serviceslist[13]=redis
-SET serviceslist[14]=turbine
-SET serviceslist[15]=uaa
-SET serviceslist[16]=vault
-SET serviceslist[17]=zipkin
+REM SET serviceslist[1]=cloudconfigbus
+SET serviceslist[1]=configserver
+SET serviceslist[2]=consul
+SET serviceslist[3]=elk
+SET serviceslist[4]=eureka
+SET serviceslist[5]=grafana
+SET serviceslist[6]=jenkins
+SET serviceslist[7]=kafka
+SET serviceslist[8]=mongodb
+SET serviceslist[9]=mysql
+SET serviceslist[10]=prometheus
+SET serviceslist[11]=rabbitmq
+SET serviceslist[12]=redis
+SET serviceslist[13]=turbine
+SET serviceslist[14]=uaa
+SET serviceslist[15]=vault
+SET serviceslist[16]=zipkin
 
 SET baseoption=%1
 
@@ -39,7 +39,7 @@ IF /I "!baseoption!"=="-s" (
 			goto usage
 	)
 	SET insallthisservicevalid=N
-	for /l %%n in (0,1,17) do ( 
+	for /l %%n in (0,1,16) do ( 
 		REM echo "!insallthisservice!" --- "!serviceslist[%%n]!"
 		IF  /I !insallthisservice!==!serviceslist[%%n]! (
 			SET insallthisservicevalid=Y
@@ -168,7 +168,7 @@ IF /I "!installservice!"=="y" (
 		docker stack deploy --compose-file eureka/docker-compose.yaml eureka
 )
 
-REM Install Cloud Config Bud
+REM Install Cloud Config Bus
 REM SET installservice=""
 REM SET servicecli="'
 REM IF /I NOT "!baseoption!"=="all" (
@@ -238,7 +238,7 @@ goto endhelp
 
 :servicelisting
 echo Service Names :
-   for /l %%n in (0,1,17) do ( 
+   for /l %%n in (0,1,16) do ( 
 		echo !serviceslist[%%n]!
 	)
 	echo To install a service use 
