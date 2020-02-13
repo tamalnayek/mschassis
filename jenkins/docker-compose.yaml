@@ -5,8 +5,9 @@ services:
       context: .
       dockerfile: Dockerfile
     #container_name: jenkins
-    cpu_percent: 10
-    mem_reservation: 100m
+    mem_reservation: 512M
+    mem_limit: 768M
+    cpus: ".75"
     ports:
       - "8900:8080"
       - "50000:50000"

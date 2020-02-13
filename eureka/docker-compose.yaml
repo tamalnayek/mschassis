@@ -4,8 +4,9 @@ services:
   eurekaA:
     #build: .
     image: kapilshekharraina/eurekaserver:latest
-    cpu_percent: 10
-    mem_reservation: 75m
+    mem_reservation: 512M
+    mem_limit: 768M
+    cpus: ".50"
     #container_name: eurekaA
     depends_on:
     - eurekaB
@@ -19,8 +20,9 @@ services:
     
   eurekaB:
     image: kapilshekharraina/eurekaserver:latest
-    cpu_percent: 10
-    mem_reservation: 75m
+    mem_reservation: 512M
+    mem_limit: 768M
+    cpus: ".50"
     #container_name: eurekaB
     #image: 
     ports:

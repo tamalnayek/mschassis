@@ -3,8 +3,9 @@ version: '2.2'
 services:
   apigateway:
     image: kapilshekharraina/apigateway
-    cpu_percent: 10
-    mem_reservation: 75m
+    mem_reservation: 512M
+    mem_limit: 768M
+    cpus: ".75"
     #container_name: apigateway
     environment:
         - apigateway.activeprofiles=startup, dev

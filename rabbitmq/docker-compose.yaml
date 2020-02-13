@@ -4,8 +4,9 @@ services:
     build: 
         context: .
         dockerfile: Dockerfile
-    cpu_percent: 10
-    mem_reservation: 150m
+    mem_reservation: 512M
+    mem_limit: 768M
+    cpus: ".50"
     #container_name: rabbitmq-master
     #image: rabbitmq:3-management
     ports:
@@ -26,8 +27,9 @@ services:
     build: 
         context: .
         dockerfile: Dockerfile
-    cpu_percent: 10
-    mem_reservation: 150m
+    mem_reservation: 512M
+    mem_limit: 768M
+    cpus: ".50"
     #container_name: rabbitmq-worker
     #image: rabbitmq:3-management
     environment:

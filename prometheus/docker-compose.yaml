@@ -6,8 +6,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    cpu_percent: 10
-    mem_reservation: 150m
+    mem_reservation: 512M
+    mem_limit: 768M
+    cpus: ".75"
     #container_name: prometheus
     volumes:
       #- ./config:/etc/prometheus

@@ -10,15 +10,15 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "1.0"
-          memory: 1024M
-        reservations:
           cpus: "0.75"
-          memory: 768M  
+          memory: 768M
+        reservations:
+          cpus: "0.25"
+          memory: 512M 
     #container_name: prometheus
-    volumes:
-      #- ./config:/etc/prometheus
-      - ./data:/prometheus
+    #volumes:
+     # - ./config/*:/etc/prometheus/*
+     # - ./data:/prometheus
      # - type: bind
      #   source: ./static/prometheus.yml
      #   target: /etc/prometheus/prometheus.yml
@@ -28,4 +28,4 @@ services:
 #networks:
 # default:
 #  external:
-#   name: ms-chassis-nw-swarm
+ #  name: ms-chassis-nw-swarm

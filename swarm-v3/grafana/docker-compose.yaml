@@ -5,11 +5,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.10'
-          memory: 75M
+          cpus: "0.75"
+          memory: 768M
         reservations:
-          cpus: '0.10'
-          memory: 50M
+          cpus: "0.25"
+          memory: 512M 
     #container_name: grafana
     ports:
       - "3000:3000"

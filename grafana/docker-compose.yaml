@@ -2,8 +2,9 @@ version: '2.2'
 services:
   grafana:
     image: grafana/grafana
-    cpu_percent: 10
-    mem_reservation: 75m
+    mem_reservation: 512M
+    mem_limit: 768M
+    cpus: ".75"
     #container_name: grafana
     ports:
       - "3000:3000"

@@ -3,8 +3,9 @@ version: '2.2'
 services:
   cloudconfigbus:
     image: kapilshekharraina/turbine
-    cpu_percent: 10
-    mem_reservation: 50m
+    mem_reservation: 512M
+    mem_limit: 768M
+    cpus: ".75"
     #container_name: turbine
     environment:
         - turbine.activeprofiles=startup, qa

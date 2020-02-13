@@ -3,8 +3,8 @@ services:
   mongo:
     image: mongo
     #container_name: mongo
-    mem_reservation: 500M
-    mem_limit: 1000M
+    mem_reservation: 512M
+    mem_limit: 768M
     cpus: ".75"
     restart: always
     environment:

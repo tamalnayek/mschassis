@@ -9,9 +9,9 @@ services:
     #container_name: vault
     
     #cpu_percent: 10
-    mem_reservation: 75M
-    mem_limit: 100M
-    cpus: ".10"
+    mem_reservation: 512M
+    mem_limit: 768M
+    cpus: ".75"
     ports:
       - 8200:8200
     #volumes:
