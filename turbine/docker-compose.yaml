@@ -1,14 +1,14 @@
 version: '2.2'
 
 services:
-  cloudconfigbus:
+  turbine:
     image: kapilshekharraina/turbine
     mem_reservation: 512M
     mem_limit: 768M
     cpus: ".75"
     #container_name: turbine
     environment:
-        - turbine.activeprofiles=startup, qa
+        - turbine.activeprofiles=startup, dev
     ports:
       - "9093:9093"
       - "8855:8855"
