@@ -2,7 +2,7 @@ version: '2.2'
 
 services:
   cloudconfigserver:
-    image: kapilshekharraina/cloudconfigserver
+    image: kapilshekharraina/cloudconfigserver:latest
     mem_reservation: 512M
     mem_limit: 768M
     cpus: ".50"
