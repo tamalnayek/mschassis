@@ -19,6 +19,7 @@ SET serviceslist[13]=turbine
 SET serviceslist[14]=uaa
 SET serviceslist[15]=vault
 SET serviceslist[16]=zipkin
+SET serviceslist[17]=jaeger
 
 SET baseoption=%1
 
@@ -32,7 +33,7 @@ IF /I "!baseoption!"=="services" (
 IF /I "!baseoption!"=="-s" (
 	SET uninsallthisservice=%2
 	SET uninsallthisservicevalid=N
-	for /l %%n in (0,1,16) do ( 
+	for /l %%n in (0,1,17) do ( 
 		REM echo "!uninsallthisservice!" --- "!serviceslist[%%n]!"
 		IF  /I !uninsallthisservice!==!serviceslist[%%n]! (
 			SET uninsallthisservicevalid=Y
@@ -53,7 +54,7 @@ IF /I NOT "!baseoption!"=="" (
 	goto usage
 )
 
-for /l %%n in (0,1,16) do ( 
+for /l %%n in (0,1,17) do ( 
 		echo Stopping !serviceslist[%%n]!
 		docker-compose -f !serviceslist[%%n]!/docker-compose.yaml down
 )
@@ -81,7 +82,7 @@ goto endhelp
 
 :servicelisting
 echo Service Names :
-   for /l %%n in (0,1,16) do ( 
+   for /l %%n in (0,1,17) do ( 
 		echo !serviceslist[%%n]!
 	)
 	echo To uninstall a service use 

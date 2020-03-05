@@ -18,7 +18,7 @@ SET serviceslist[13]=turbine
 SET serviceslist[14]=uaa
 SET serviceslist[15]=vault
 SET serviceslist[16]=zipkin
-
+SET serviceslist[17]=jaeger
 SET baseoption=%1
 
 IF /I "!baseoption!"=="help" (
@@ -31,7 +31,7 @@ IF /I "!baseoption!"=="services" (
 IF /I "!baseoption!"=="-s" (
 	SET insallthisservice=%2
 	SET insallthisservicevalid=N
-	for /l %%n in (0,1,16) do ( 
+	for /l %%n in (0,1,17) do ( 
 		REM echo "!insallthisservice!" --- "!serviceslist[%%n]!"
 		IF  /I !insallthisservice!==!serviceslist[%%n]! (
 			SET insallthisservicevalid=Y
@@ -205,7 +205,7 @@ goto endhelp
 
 :servicelisting
 echo Service Names :
-   for /l %%n in (0,1,16) do ( 
+   for /l %%n in (0,1,17) do ( 
 		echo !serviceslist[%%n]!
 	)
 	echo To install a service use 
