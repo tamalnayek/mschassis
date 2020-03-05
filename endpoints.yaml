@@ -4,6 +4,8 @@ consul:
     - http://docker_host:8500/ui
 zipkin:
     - http://docker_host:9411/
+jaeger:
+    - http://docker_host:16686/
 jenkins:
     - http://docker_host:8900
 mongo:
