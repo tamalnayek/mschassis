@@ -1,0 +1,43 @@
+version: '3.2'
+services:
+  mysql:
+    image: mysql
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: '0.75'
+          memory: 768M
+        reservations:
+          cpus: '0.50'
+          memory: 512M
+    #container_name: mysql
+    environment:
+      MYSQL_DATABASE: 'db_mysql_default'
+      # So you don't have to use root, but you can if you like
+      MYSQL_USER: 'user'
+      # You can use whatever password you like
+      MYSQL_PASSWORD: 'password'
+      # Password for root access
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      # <Port exposed> : < MySQL Port running inside container>
+      - '3306:3306'
+    expose:
+      # Opens port 3306 on the container
+      - '3306'
+      # Where our data will be persisted
+    volumes:
+      - /var/lib/mysql:/var/lib/mysql
+#      - type: bind
+#       source: ./static
+#        target: /opt/app/static
+
+# Names our volume
+#volumes:
+
+
+#networks:
+# default:
+ # external:
+  # name: ms-chassis-nw-swarm

@@ -1,0 +1,68 @@
+version: '3.2'
+services:
+  zookeeper:
+    image: wurstmeister/zookeeper
+    #container_name: zookeeper
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 768M
+        reservations:
+          cpus: '0.25'
+          memory: 512M
+    ports:
+      - "2181:2181"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock      
+  kafka1:
+    image: wurstmeister/kafka
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 256M
+    ports:
+      - "9094:9094"
+    environment:
+      HOSTNAME_COMMAND: "echo $$HOSTNAME"
+      PORT_COMMAND: "docker port $$HOSTNAME 9092/tcp | cut -d: -f2"
+      KAFKA_LISTENERS: "INSIDE://_{HOSTNAME_COMMAND}:9092,OUTSIDE://0.0.0.0:9094" 
+      KAFKA_ADVERTISED_LISTENERS: "INSIDE://_{HOSTNAME_COMMAND}:9092,OUTSIDE://host.kafka:9094"
+      KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
+      LOG_CLEANUP_POLICY: compact
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+  kafka2:
+    image: wurstmeister/kafka
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 256M
+    ports:
+      - "9095:9094"
+    environment:
+      HOSTNAME_COMMAND: "echo $$HOSTNAME"
+      PORT_COMMAND: "docker port $$HOSTNAME 9092/tcp | cut -d: -f2"
+      KAFKA_LISTENERS: "INSIDE://_{HOSTNAME_COMMAND}:9092,OUTSIDE://0.0.0.0:9094" 
+      KAFKA_ADVERTISED_LISTENERS: "INSIDE://_{HOSTNAME_COMMAND}:9092,OUTSIDE://host.kafka:9095"
+      KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
+      LOG_CLEANUP_POLICY: compact
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+networks:
+ default:
+  external:
+   name: ms-chassis-nw-swarm

@@ -1,0 +1,31 @@
+version: '3.2'
+#volumes:
+#   prometheus_data: {}
+services:
+  prometheus:
+    image: kapilshekharraina/prometheus:latest
+    #build:
+    #  context: .
+    #  dockerfile: Dockerfile
+    deploy:
+      resources:
+        limits:
+          cpus: "0.75"
+          memory: 768M
+        reservations:
+          cpus: "0.25"
+          memory: 512M 
+    #container_name: prometheus
+    #volumes:
+     # - ./config/*:/etc/prometheus/*
+     # - ./data:/prometheus
+     # - type: bind
+     #   source: ./static/prometheus.yml
+     #   target: /etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+
+#networks:
+# default:
+#  external:
+ #  name: ms-chassis-nw-swarm

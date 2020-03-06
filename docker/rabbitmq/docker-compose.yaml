@@ -1,0 +1,47 @@
+version: "2.2"
+services:
+  rabbitmq-master:
+    build: 
+        context: .
+        dockerfile: Dockerfile
+    mem_reservation: 512M
+    mem_limit: 768M
+    cpus: ".50"
+    #container_name: rabbitmq-master
+    #image: rabbitmq:3-management
+    ports:
+     - "15672:15672"
+     - "5672:5672"
+     - "4369:4369"
+     - "5671:5671"
+     - "15671:15671"
+     - "25671:25671"
+    environment:
+        RABBITMQ_ERLANG_COOKIE: "secret string"
+        RABBITMQ_NODENAME:  "rabbitmq-master"
+    #volumes:
+    #  - ./config/rabbitmq.config:/etc/rabbitmq/rabbitmq.config
+    #  - ./config/definitions.json:/etc/rabbitmq/definitions.json
+        
+  rabbitmq-worker:
+    build: 
+        context: .
+        dockerfile: Dockerfile
+    mem_reservation: 512M
+    mem_limit: 768M
+    cpus: ".50"
+    #container_name: rabbitmq-worker
+    #image: rabbitmq:3-management
+    environment:
+        RABBITMQ_ERLANG_COOKIE: "secret string"
+        RABBITMQ_NODENAME:  "rabbitmq-worker"
+    #volumes:
+    #  - ./config/rabbitmq.config:/etc/rabbitmq/rabbitmq.config
+   #   - ./config/definitions.json:/etc/rabbitmq/definitions.json
+    depends_on:
+     - rabbitmq-master
+ 
+networks:
+ default:
+  external:
+   name: ms-chassis-nw

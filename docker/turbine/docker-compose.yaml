@@ -1,0 +1,20 @@
+version: '2.2'
+
+services:
+  turbine:
+    image: kapilshekharraina/turbine:latest
+    mem_reservation: 512M
+    mem_limit: 768M
+    cpus: ".75"
+    #container_name: turbine
+    environment:
+       - turbine.activeprofiles=startup, dev
+       #- configserver.zone.url=http://host.docker.internal:8888
+    ports:
+      - "9093:9093"
+      - "8855:8855"
+ 
+networks:
+ default:
+  external:
+   name: ms-chassis-nw

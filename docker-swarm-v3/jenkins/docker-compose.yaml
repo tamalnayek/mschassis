@@ -1,0 +1,32 @@
+version: '3.2'
+services:
+  jenkins:
+    image: kapilshekharraina/jenkins:lts
+    #build:
+    #  context: .
+    #  dockerfile: Dockerfile
+    #container_name: jenkins
+    deploy:
+      resources:
+        limits:
+          cpus: '0.75'
+          memory: 768M
+        reservations:
+          cpus: '0.50'
+          memory: 512M
+    ports:
+      - "8900:8080"
+      - "50000:50000"
+      #  published: "9094-9096"
+      #  protocol: tcp
+        #mode: host
+    environment:
+      HOSTNAME_COMMAND: "echo $$HOSTNAME"
+    volumes:
+      - /var/jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+      
+networks:
+ default:
+  external:
+   name: ms-chassis-nw-swarm

@@ -1,0 +1,22 @@
+version: '3.2'
+services:
+  grafana:
+    image: grafana/grafana
+    deploy:
+      resources:
+        limits:
+          cpus: "0.75"
+          memory: 768M
+        reservations:
+          cpus: "0.25"
+          memory: 512M 
+    #container_name: grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=secret
+
+networks:
+ default:
+  external:
+   name: ms-chassis-nw-swarm

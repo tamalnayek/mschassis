@@ -1,0 +1,13 @@
+Hashicorp Consul|Hashicorp Consul(Y/N):|docker-compose -f consul/docker-compose.yaml up -d|A
+Zipkin|Zipkin(Y/N):|docker-compose -f zipkin/docker-compose.yaml up -d|A
+Jenkins|Jenkins(Y/N):|docker-compose -f jenkins/docker-compose.yaml up -d|A
+jaeger|jaeger (bind 9411 for zipkin compatability) (Y/N):|docker-compose -f jaeger/docker-compose.yaml up -d|A
+Prometheus|Prometheus(Y/N):|docker-compose -f prometheus/docker-compose.yaml up -d|A
+Grafana|Grafana(Y/N):|docker-compose -f grafana/docker-compose.yaml up -d|A
+Mongodb|Mongodb(Y/N):|docker-compose -f mongodb/docker-compose.yaml up -d|A
+MySQL|MySQL(Y/N):|docker-compose -f mysql/docker-compose.yaml up -d|A
+Redis|Redis (Y/N):|docker-compose -f redis/docker-compose.yaml up -d|A
+Hashicorp Vault|Hashicorp Vault(Y/N):|docker-compose -f vault/docker-compose.yaml up -d|A
+Rabbit MQ|Rabbit MQ(Y/N):|docker-compose -f rabbitmq/docker-compose.yaml up -d|A
+Kafka|Kafka(Y/N):|docker-compose -f kafka/docker-compose.yaml up -d|A
+

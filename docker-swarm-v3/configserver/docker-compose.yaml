@@ -1,0 +1,42 @@
+version: '3.2'
+
+services:
+  cloudconfigserver:
+    image: kapilshekharraina/cloudconfigserver:latest
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 768M
+        reservations:
+          cpus: '0.25'
+          memory: 512M
+    #container_name: cloudconfigserver
+    env_file:
+        - ./.env
+    #environment:
+    #    - configserver.activeprofiles=${configserver_activeprofiles}
+    #   - configserver.git.uri=$configserver_git_uri                                                            
+    #   - configserver.git.order=$configserver_git_order                                                        
+    #    - configserver.git.force-pull=$configserver_git_force_pull                                                   
+    #   - configserver.git.deleteUntrackedBranches=$configserver_git_deleteUntrackedBranches                        
+    #    - configserver.vault.host=$configserver_vault_host                                                      
+    #   - configserver.vault.port=$configserver_vault_port                                                            
+    #    - configserver.vault.scheme=$configserver_vault_scheme                                                   
+    #    - configserver.vault.authentication=$configserver_vault_authentication                                         
+    #    - configserver.vault.token=$configserver_vault_token                                                     
+    #    - configserver.vault.kv-version=$configserver_vault_kv_version                                               
+    #    - configserver.vault.order=$configserver_vault_order                                                      
+    #    - configserver.port=$configserver_port                                                                  
+    #    - configserver.management.port=$configserver_management_port                                            
+    #    - configserver.allowbeandefinitionoverride=$configserver_allowbeandefinitionoverride                          
+    #    - configserver.logging.level.root=$configserver_logging_level_root
+     
+    ports:
+      - "8888:8888"
+      - "8889:8889"
+      
+networks:
+ default:
+  external:
+   name: ms-chassis-nw-swarm

@@ -1,0 +1,41 @@
+version: "2.2"
+services:
+
+  eurekaA:
+    #build: .
+    image: kapilshekharraina/eurekaserver:latest
+    mem_reservation: 512M
+    mem_limit: 768M
+    cpus: ".50"
+    #container_name: eurekaA
+    depends_on:
+    - eurekaB
+    ports:
+     - "8761:8761"
+    environment:
+        eureka.server.activeprofiles: startup, dev
+        eureka.server.port: "8761"
+        eureka.server.hostname: "eurekaA" 
+        eureka.peer.url: "http://eurekaB:8762/eureka"
+        #configserver.zone.url: "http://host.docker.internal:8888"
+    
+  eurekaB:
+    image: kapilshekharraina/eurekaserver:latest
+    mem_reservation: 512M
+    mem_limit: 768M
+    cpus: ".50"
+    #container_name: eurekaB
+    #image: 
+    ports:
+     - "8762:8762"
+    environment:
+        eureka.server.activeprofiles: startup, dev
+        eureka.server.port: "8762"
+        eureka.server.hostname: "eurekaB" 
+        eureka.peer.url: "http://eurekaA:8761/eureka"
+        #configserver.zone.url: "http://host.docker.internal:8888"
+
+networks:
+ default:
+  external:
+   name: ms-chassis-nw

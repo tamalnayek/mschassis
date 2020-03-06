@@ -1,0 +1,34 @@
+version: '2.2'
+services:
+  zookeeper:
+    image: wurstmeister/zookeeper
+    #container_name: zookeeper
+    mem_reservation: 512M
+    mem_limit: 768M
+    cpus: ".50"
+    ports:
+      - "2181:2181"
+  kafka:
+    image: wurstmeister/kafka
+    #container_name: kafka
+    ports:
+      - "9094-9096:9094"
+    mem_reservation: 256M
+    mem_limit: 512M
+    cpus: ".50"
+    environment:
+      HOSTNAME_COMMAND: "echo $$HOSTNAME"
+      PORT_COMMAND: "docker port $$HOSTNAME 9094/tcp | cut -d: -f2"
+      KAFKA_LISTENERS: "INSIDE://_{HOSTNAME_COMMAND}:9092,OUTSIDE://0.0.0.0:9094" 
+      KAFKA_ADVERTISED_LISTENERS: "INSIDE://_{HOSTNAME_COMMAND}:9092,OUTSIDE://kafka:_{PORT_COMMAND}"
+      KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
+      LOG_CLEANUP_POLICY: compact
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      
+networks:
+ default:
+  external:
+   name: ms-chassis-nw

@@ -1,0 +1,27 @@
+version: '3.2'
+services:
+  mongo:
+    image: mongo
+    #container_name: mongo
+    deploy:
+      resources:
+        limits:
+          cpus: '0.75'
+          memory: 768M
+        reservations:
+          cpus: '0.50'
+          memory: 512M
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+       #MONGO_INITDB_ROOT_PASSWORD_FILE=/run/secrets/mongo-root
+    volumes:
+      - ./data:/data/db
+    ports:
+    - "27017:27017"
+
+#networks:
+# default:
+#  external:
+#   name: ms-chassis-nw-swarm

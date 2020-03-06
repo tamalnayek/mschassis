@@ -1,0 +1,26 @@
+version: '2.2'
+services:
+  jenkins:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    #container_name: jenkins
+    mem_reservation: 512M
+    mem_limit: 768M
+    cpus: ".75"
+    ports:
+      - "8900:8080"
+      - "50000:50000"
+      #  published: "9094-9096"
+      #  protocol: tcp
+        #mode: host
+    environment:
+      HOSTNAME_COMMAND: "echo $$HOSTNAME"
+    volumes:
+      - /var/jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+      
+networks:
+ default:
+  external:
+   name: ms-chassis-nw

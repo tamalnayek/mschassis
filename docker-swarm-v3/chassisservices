@@ -1,0 +1,12 @@
+Hashicorp Consul|Hashicorp Consul(Y/N):|docker stack deploy --compose-file consul/docker-compose.yaml consul|Q
+Zipkin|Zipkin(Y/N):|docker stack deploy --compose-file zipkin/docker-compose.yaml zipkin|A
+Jenkins|Jenkins(Y/N):|docker stack deploy --compose-file jenkins/docker-compose.yaml jenkins|A
+Prometheus|Prometheus(Y/N):|docker-compose -f prometheus/docker-compose.yaml up -d|Q
+Grafana|Grafana(Y/N):|docker stack deploy --compose-file grafana/docker-compose.yaml grafana|A
+Mongodb|Mongodb(Y/N):|docker stack deploy --compose-file mongodb/docker-compose.yaml mongodb|Q
+MySQL|MySQL(Y/N):|docker stack deploy --compose-file mysql/docker-compose.yaml mysql|A
+Redis|Redis (Y/N):|docker stack deploy --compose-file redis/docker-compose.yaml redis|A
+Hashicorp Vault|Hashicorp Vault(Y/N):|docker stack deploy --compose-file vault/docker-compose.yaml vault|A
+Rabbit MQ|Rabbit MQ(Y/N):|docker stack deploy --compose-file rabbitmq/docker-compose.yaml rabbitmq|A
+Kafka|Kafka(Y/N):|docker stack deploy --compose-file kafka/docker-compose.yaml kafka|A
+

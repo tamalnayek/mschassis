@@ -1,0 +1,22 @@
+version: '3.2'
+
+services:
+  cloudconfigbus:
+    image: kapilshekharraina/cloudconfigbus:latest
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 768M
+        reservations:
+          cpus: '0.25'
+          memory: 512M
+    environment:
+        - cloudconfigbus.activeprofiles=startup, qa
+    ports:
+      - "8899:8899"
+ 
+networks:
+ default:
+  external:
+   name: ms-chassis-nw-swarm

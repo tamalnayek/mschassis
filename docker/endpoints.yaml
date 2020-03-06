@@ -1,0 +1,37 @@
+vault:
+    - http://docker_host:8200/ui/vault/auth
+consul:
+    - http://docker_host:8500/ui
+zipkin:
+    - http://docker_host:9411/
+jaeger:
+    - http://docker_host:16686/
+jenkins:
+    - http://docker_host:8900
+mongo:
+    - docker_host:27017
+mysql:
+    - docker_host:3306
+redis:
+    - docker_host:6379
+prometheus:
+    - http://docker_host:9090
+grafana:
+    - http://docker_host:3000  (admin/secret)
+rabbit MQ:
+    - http://docker_host:15672/ (guest/guest)
+Kafka:
+    - brokers : docker_host:9094, docker_host:9095, docker_host:9096
+    - zookeeper: docker_host:2181
+cloudconfigserver:
+    -  docker_host:8888
+eureka:
+    -  docker_host:8761,8762
+cloudconfigbus:
+    -  docker_host:8899
+turbine:
+    -  docker_host:9093
+apigateway:
+    -  docker_host:8080
+uaa:
+    - http://docker_host:8888/uaa/login

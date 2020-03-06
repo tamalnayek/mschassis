@@ -1,0 +1,44 @@
+version: '3.2'
+#Consul Agents servers are run in a cluster that communicates via a gossip protocol and uses the Raft consensus protocol.
+services:
+
+  consul-agent-1: &consul-agent
+    image: consul:latest
+    #container_name: consul
+    deploy:
+      resources:
+        limits:
+          cpus: "0.75"
+          memory: 768M
+        reservations:
+          cpus: "0.50"
+          memory: 512M
+
+    command: "agent -retry-join consul-server-bootstrap -client 0.0.0.0"
+
+  consul-agent-2:
+    <<: *consul-agent
+
+  consul-agent-3:
+    <<: *consul-agent
+
+  consul-server-1: &consul-server
+    <<: *consul-agent
+    command: "agent -server -retry-join consul-server-bootstrap -client 0.0.0.0"
+
+  consul-server-2:
+    <<: *consul-server
+
+  consul-server-bootstrap:
+    <<: *consul-agent
+    ports:
+      - "8400:8400"
+      - "8500:8500" #l  ocalhost:8500
+      - "8600:8600"
+      - "8600:8600/udp"
+    command: "agent -server -bootstrap-expect 3 -ui -client 0.0.0.0"
+
+networks:
+ default:
+  external:
+   name: ms-chassis-nw-swarm
