@@ -17,6 +17,6 @@ spec:
       port: 8854
       targetPort: 8854
   selector: 
-    app: redis
+    app: apigateway
     version: v1
   type: NodePort

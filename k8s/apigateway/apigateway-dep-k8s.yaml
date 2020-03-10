@@ -22,7 +22,7 @@ spec:
         - 
           image: "kapilshekharraina/apigateway:latest"
           imagePullPolicy: IfNotPresent
-          name: redis
+          name: apigateway
           ports: 
           - containerPort: 8080
           - containerPort: 8854
