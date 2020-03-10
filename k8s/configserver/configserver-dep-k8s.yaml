@@ -1,0 +1,103 @@
+--- 
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  labels: 
+    app: cloudconfigserver
+    version: v1
+  name: cloudconfigserver
+spec: 
+  replicas: 1
+  selector: 
+    matchLabels: 
+      app: cloudconfigserver
+      version: v1
+  template: 
+    metadata: 
+      labels: 
+        app: cloudconfigserver
+        version: v1
+    spec: 
+      containers: 
+        - 
+          image: "kapilshekharraina/cloudconfigserver:latest"
+          imagePullPolicy: IfNotPresent
+          name: cloudconfigserver
+          ports: 
+            - 
+              containerPort: 8888
+              name: http
+              protocol: TCP
+            - 
+              containerPort: 8889
+              name: httpactuator
+              protocol: TCP
+          resources: 
+            requests: 
+              cpu: 100m
+          env:
+            - name: configserver.activeprofiles
+              value: "git"
+            - name: configserver.git.uri
+              value: "https://github.com/kapilraina/springconfigrepo.git"
+            - name: configserver.git.order
+              value: "1"
+            - name: configserver.git.force-pull
+              value: "true"              
+            - name: configserver.git.deleteUntrackedBranches
+              value: "true"
+            - name: configserver.vault.enabled
+              value: "false"              
+            - name: configserver.vault.host
+              value: "vault"
+            - name: configserver.vault.port
+              value: "8200"
+            - name: configserver.vault.scheme
+              value: "http"
+            - name: configserver.vault.authentication
+              value: "TOKEN"
+            - name: configserver.vault.token
+              value: "s.BNknEso0GqsAr4jhUPnJBLui"
+            - name: configserver.vault.kv-version
+              value: "1"
+            - name: configserver.vault.order
+              value: "2"
+            - name: configserver.port
+              value: "8888"
+            - name: configserver.management.port
+              value: "8889"
+            - name: configserver.allowbeandefinitionoverride
+              value: "true"
+            - name: configserver.logging.level.root
+              value: "INFO"
+            - name: configserver.vault.uri
+              value: "v1/secret/"
+            - name: configserver.redis.host
+              value: "redis"
+            - name: configserver.redis.port
+              value: "6379"
+            - name: configserver.bus.trace
+              value: "true"
+            - name: configserver.bus.rabbitmq.host
+              value: "rabbitmq-master"
+            - name: configserver.bus.rabbitmq.port
+              value: "5672"     
+            - name: configserver.logging.level.web
+              value: "DEBUG"                   
+#          livenessProbe: 
+#            httpGet: 
+#              path: /actuator/health
+#              port: 8889
+#              scheme: HTTP
+#            initialDelaySeconds: 20
+#            periodSeconds: 5
+#            timeoutSeconds: 1
+
+#          readinessProbe: 
+#            httpGet: 
+#              path: /actuator/health
+#              port: 8889
+#              scheme: HTTP
+#            initialDelaySeconds: 10
+#            periodSeconds: 5
+#            timeoutSeconds: 1

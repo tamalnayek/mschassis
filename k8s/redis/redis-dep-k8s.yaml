@@ -1,0 +1,41 @@
+--- 
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  labels: 
+    app: redis
+    version: v1
+  name: redis
+spec: 
+  replicas: 1
+  selector: 
+    matchLabels: 
+      app: redis
+      version: v1
+  template: 
+    metadata: 
+      labels: 
+        app: redis
+        version: v1
+    spec: 
+      containers: 
+        - 
+          image: "bitnami/redis:5.0"
+          imagePullPolicy: IfNotPresent
+          name: redis
+          ports: 
+          - containerPort: 6379    
+
+          env:
+            - name:  ALLOW_EMPTY_PASSWORD
+              value: "yes"
+            - name: REDIS_DISABLE_COMMANDS
+              value: "FLUSHDB,FLUSHALL"
+          volumeMounts:
+            - mountPath: /bitnami/redis/data
+              name: redis-data
+      volumes:
+       - name: redis-data
+         hostPath:
+            path: data
+            type: DirectoryOrCreate

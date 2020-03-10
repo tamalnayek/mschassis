@@ -1,0 +1,31 @@
+--- 
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  labels: 
+    app: apigateway
+    version: v1
+  name: apigateway
+spec: 
+  replicas: 1
+  selector: 
+    matchLabels: 
+      app: apigateway
+      version: v1
+  template: 
+    metadata: 
+      labels: 
+        app: apigateway
+        version: v1
+    spec: 
+      containers: 
+        - 
+          image: "kapilshekharraina/apigateway:latest"
+          imagePullPolicy: IfNotPresent
+          name: redis
+          ports: 
+          - containerPort: 8080
+          - containerPort: 8854
+          env:
+            - name:   apigateway.activeprofiles
+              value: "startup, dev"
