@@ -20,7 +20,7 @@ spec:
     spec: 
       containers: 
         - 
-          image: "rabbitmq:3.6.0-management"
+          image: "rabbitmq:3-management"
           imagePullPolicy: IfNotPresent
           name: rabbitmq
           ports: 
@@ -37,7 +37,7 @@ spec:
             - name: RABBITMQ_NODENAME
               value: "rabbitmq-master"
           volumeMounts:
-            - mountPath: /etc/rabbitmq
+            - mountPath: /etc/rabbitmqtmp
               name: rabbitmq-config
       volumes:
        - name: rabbitmq-config
