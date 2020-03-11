@@ -1,41 +1,33 @@
 --- 
 apiVersion: apps/v1
-kind: Deploymentz
+kind: Deployment
 metadata: 
   labels: 
-    app: rabbitmq
+    app: rabbitmqw
     version: v1
-  name: rabbitmq
+  name: rabbitmqw
 spec: 
   replicas: 1
   selector: 
     matchLabels: 
-      app: rabbitmq
+      app: rabbitmqw
       version: v1
   template: 
     metadata: 
       labels: 
-        app: rabbitmq
+        app: rabbitmqw
         version: v1
     spec: 
       containers: 
         - 
           image: "rabbitmq:3-management"
           imagePullPolicy: IfNotPresent
-          name: rabbitmq
-          ports: 
-          - containerPort: 15672
-          - containerPort: 5672
-          - containerPort: 4369
-          - containerPort: 5671
-          - containerPort: 15671
-          - containerPort: 25671          
-
+          name: rabbitmqw
           env:
             - name: RABBITMQ_ERLANG_COOKIE
               value: "secret string"
             - name: RABBITMQ_NODENAME
-              value: "rabbitmq-master"
+              value: "rabbitmq-worker"
           volumeMounts:
             - mountPath: /etc/rabbitmq
               name: rabbitmq-config
