@@ -3,10 +3,10 @@ apiVersion: v1
 kind: Service
 metadata: 
   labels: 
-    app: rabbitmq
+    app: rabbitmq-master
     version: v1
   name: rabbitmq-master
-spec: zz
+spec: 
   ports: 
     - 
       name: http
@@ -35,4 +35,4 @@ spec: zz
   selector: 
     app: rabbitmq
     version: v1
-  type: LoadBalancer
+  type: NodePort
