@@ -35,4 +35,4 @@ spec:
   selector: 
     app: rabbitmq
     version: v1
-  type: NodePort
+  type: LoadBalancer
