@@ -1,0 +1,41 @@
+--- 
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  labels: 
+    app: jenkins
+    version: v1
+  name: jenkins
+spec: 
+  replicas: 1
+  selector: 
+    matchLabels: 
+      app: jenkins
+      version: v1
+  template: 
+    metadata: 
+      labels: 
+        app: jenkins
+        version: v1
+    spec: 
+      containers: 
+        - 
+          image: "kapilshekharraina/jenkins:latest"
+          imagePullPolicy: IfNotPresent
+          name: redis
+          ports: 
+          - containerPort: 8900    
+          - containerPort: 50000  
+          volumeMounts:
+            - mountPath: "/var/jenkins_home"
+              name: jenkinshome
+            - mountPath: "/var/run/docker.sock"
+              name: dockersock
+      volumes:
+       - name: jenkinshome
+         hostPath:
+            path: "/work/sharedmount/jenkins"
+            type: DirectoryOrCreate
+       - name: dockersock
+         hostPath:
+            path: "/var/run/docker.sock"

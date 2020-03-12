@@ -3,29 +3,29 @@ apiVersion: apps/v1
 kind: Deployment
 metadata: 
   labels: 
-    app: apigateway
+    app: turbine
     version: v1
-  name: apigateway
+  name: turbine
 spec: 
   replicas: 1
   selector: 
     matchLabels: 
-      app: apigateway
+      app: turbine
       version: v1
   template: 
     metadata: 
       labels: 
-        app: apigateway
+        app: turbine
         version: v1
     spec: 
       containers: 
         - 
-          image: "kapilshekharraina/apigateway:latest"
+          image: "kapilshekharraina/turbine:latest"
           imagePullPolicy: Always
-          name: apigateway
+          name: turbine
           ports: 
-          - containerPort: 8080
-          - containerPort: 8854
+          - containerPort: 9093
+          - containerPort: 8855
           env:
-            - name:   apigateway.activeprofiles
+            - name:   turbine.activeprofiles
               value: "startup, dev"

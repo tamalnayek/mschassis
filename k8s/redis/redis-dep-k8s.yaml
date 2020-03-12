@@ -37,5 +37,5 @@ spec:
       volumes:
        - name: redis-data
          hostPath:
-            path: data
+            path: /work/sharedmount/redis/data
             type: DirectoryOrCreate

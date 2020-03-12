@@ -1,0 +1,22 @@
+--- 
+apiVersion: v1
+kind: Service
+metadata: 
+  labels: 
+    app: turbine
+    version: v1
+  name: turbine
+spec: 
+  ports: 
+    - 
+      name: http
+      port: 9093
+      targetPort: 9093
+    - 
+      name: httpactuator
+      port: 8855
+      targetPort: 8855
+  selector: 
+    app: turbine
+    version: v1
+  type: NodePort

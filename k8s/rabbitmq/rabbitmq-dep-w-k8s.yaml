@@ -34,5 +34,5 @@ spec:
       volumes:
        - name: rabbitmq-config
          hostPath:
-            path: /etc/rabbitmq #Map it in host VM first
+            path: "/work/sharedmount/rabbitmqtmp" #Map it in host VM first
             type: DirectoryOrCreate

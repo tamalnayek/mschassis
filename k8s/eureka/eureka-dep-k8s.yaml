@@ -21,7 +21,7 @@ spec:
       containers: 
         - 
           image: "kapilshekharraina/eurekaserver:latest"
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           name: eureka-1
           ports: 
           - containerPort: 8761    
@@ -35,6 +35,7 @@ spec:
               value: "eureka-1"
             - name: eureka.peer.url
               value: "http://eureka-2:8762/eureka"
+
               
 --- 
 apiVersion: apps/v1
@@ -59,7 +60,7 @@ spec:
       containers: 
         - 
           image: "kapilshekharraina/eurekaserver:latest"
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           name: eureka-1
           ports: 
           - containerPort: 8762

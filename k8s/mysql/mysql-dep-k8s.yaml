@@ -1,0 +1,50 @@
+--- 
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  labels: 
+    app: mysql
+    version: v1
+  name: mysql
+spec: 
+  replicas: 1
+  selector: 
+    matchLabels: 
+      app: mysql
+      version: v1
+  template: 
+    metadata: 
+      labels: 
+        app: mysql
+        version: v1
+    spec: 
+#      securityContext:
+#        runAsUser: 1000
+#        runAsGroup: 50
+      containers: 
+        - 
+          image: "mysql"
+          imagePullPolicy: IfNotPresent
+          name: mysql
+          ports: 
+          - containerPort: 3306    
+
+          env:
+            - name:  MYSQL_DATABASE
+              value: "db_mysql_default"
+            - name: MYSQL_USER
+              value: "user"
+            - name: MYSQL_PASSWORD
+              value: "password"
+            - name: MYSQL_ROOT_PASSWORD
+              value: "password"	
+            - name: innodb_use_native_aio
+              value: "0"	              
+#          volumeMounts:
+#            - mountPath: /var/lib/mysql
+#              name: mysqlvol
+#      volumes:
+#       - name: mysqlvol
+#         hostPath:
+#            path: /work/sharedmount/mysql
+#            type: DirectoryOrCreate

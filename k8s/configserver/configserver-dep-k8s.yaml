@@ -21,7 +21,7 @@ spec:
       containers: 
         - 
           image: "kapilshekharraina/cloudconfigserver:latest"
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           name: cloudconfigserver
           ports: 
             - 
@@ -46,6 +46,8 @@ spec:
               value: "true"              
             - name: configserver.git.deleteUntrackedBranches
               value: "true"
+            - name: configserver.label
+              value: "vbconfigs,master"              
             - name: configserver.vault.enabled
               value: "false"              
             - name: configserver.vault.host
