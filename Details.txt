@@ -1,0 +1,22 @@
+master-- Master : 192.168.56.105 and 10.0.2.8
+Node01-- Node01 : 192.168.56.108 and 10.0.2.10
+Node02-- Node02 : 192.168.56.106 and 10.0.2.9
+
+
+https://vitux.com/install-and-deploy-kubernetes-on-ubuntu/
+
+kubeadm join 10.0.2.8:6443 --token ajrfna.0rsq79dle4iyg69h --discovery-token-ca-cert-hash sha256:6f16fd703c360802fff2fc59d133d53f042e55d2d191fcf56db98ec6982b3604
+
+kubectl config set-cluster k8svb --insecure-skip-tls-verify=true --server=https://192.168.56.105:6443
+kubectl config set-credentials clusteradmin --client-certificate=client-certificate --client-key=client-key
+kubectl config set-context k8svb --cluster=k8svb --user=clusteradmin
+kubectl config use-context k8svb
+
+
+------ Mounts From Host ------------
+https://gist.github.com/estorgio/1d679f962e8209f8a9232f7593683265
+mount -t vboxsf sharedmount /work/sharedmount
+
+sudo nano /etc/fstab
+sharedmount	/work/sharedmount	vboxsf	defaults	0	0
+sudo nano /etc/modules
