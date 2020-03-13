@@ -1,0 +1,36 @@
+--- 
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  labels: 
+    app: prometheus
+    version: v1
+  name: prometheus
+spec: 
+  replicas: 1
+  selector: 
+    matchLabels: 
+      app: prometheus
+      version: v1
+  template: 
+    metadata: 
+      labels: 
+        app: prometheus
+        version: v1
+    spec: 
+      containers: 
+        - 
+          image: prom/prometheus
+          imagePullPolicy: IfNotPresent
+          name: prometheus
+          ports: 
+          - containerPort: 9090    
+          args: ["--config.file=/etc/prometheus/config/prometheus.yml","--storage.tsdb.path=/prometheus","--storage.tsdb.retention=31d","--web.console.libraries=/usr/share/prometheus/console_libraries","--web.console.templates=/usr/share/prometheus/consoles"]
+          volumeMounts:
+            - mountPath: /etc/prometheus/config
+              name: prometheus-config
+      volumes:
+       - name: prometheus-config
+         hostPath:
+            path: /work/sharedmount/prometheus/config
+            type: DirectoryOrCreate

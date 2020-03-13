@@ -29,10 +29,10 @@ spec:
             - name: RABBITMQ_NODENAME
               value: "rabbitmq-worker"
           volumeMounts:
-            - mountPath: /etc/rabbitmqtmp
+            - mountPath: "/etc/rabbitmq"
               name: rabbitmq-config
       volumes:
        - name: rabbitmq-config
          hostPath:
-            path: "/work/sharedmount/rabbitmqtmp" #Map it in host VM first
+            path: /work/sharedmount/rabbitmq #Map it in host VM first
             type: DirectoryOrCreate

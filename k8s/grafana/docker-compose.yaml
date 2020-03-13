@@ -1,0 +1,17 @@
+version: '2.2'
+services:
+  grafana:
+    image: grafana/grafana
+    mem_reservation: 512M
+    mem_limit: 768M
+    cpus: ".75"
+    #container_name: grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=secret
+
+networks:
+ default:
+  external:
+   name: ms-chassis-nw

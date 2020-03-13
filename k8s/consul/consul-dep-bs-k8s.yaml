@@ -1,0 +1,40 @@
+--- 
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  labels: 
+    app: consul-server-bootstrap
+    version: v1
+  name: consul-server-bootstrap
+spec: 
+  replicas: 1
+  selector: 
+    matchLabels: 
+      app: consul-server-bootstrap
+      version: v1
+  template: 
+    metadata: 
+      labels: 
+        app: consul-server-bootstrap
+        version: v1
+    spec: 
+      containers: 
+        - 
+          image: consul:latest
+          imagePullPolicy: IfNotPresent
+          name: consul-server-bootstrap
+          command: ["consul"]
+          args: ["agent","-server", "-bootstrap-expect", "3", "-ui", "-client", "0.0.0.0","-data-dir","/etc/data"]
+          ports: 
+          - containerPort: 8400
+          - containerPort: 8500 #Http
+          - containerPort: 8600
+          - containerPort: 8400
+          volumeMounts:
+            - mountPath: /etc/data
+              name: consul-data        
+      volumes:
+       - name: consul-data
+         hostPath:
+            path: /work/sharedmount/consul/data
+            type: DirectoryOrCreate 

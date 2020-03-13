@@ -1,0 +1,31 @@
+--- 
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  labels: 
+    app: zipkin
+    version: v1
+  name: zipkin
+spec: 
+  replicas: 1
+  selector: 
+    matchLabels: 
+      app: zipkin
+      version: v1
+  template: 
+    metadata: 
+      labels: 
+        app: zipkin
+        version: v1
+    spec: 
+      containers: 
+        - 
+          image: openzipkin/zipkin
+          imagePullPolicy: IfNotPresent
+          name: zipkin
+          ports: 
+          - containerPort: 9411    
+
+          env:
+            - name:  STORAGE_TYPE
+              value: "mem"

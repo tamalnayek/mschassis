@@ -1,0 +1,57 @@
+
+docker-compose -f docker-compose-swarm.yml up --scale kafka=2
+===== TOPICS ======
+kafka-topics --create --bootstrap-server host.docker.internal:9095 --replication-factor 2 --partitions 3 --topic w-events
+kafka-topics --describe --bootstrap-server host.docker.internal:9095 --topic w-events
+kafka-topics --bootstrap-server host.docker.internal:9095 --alter --topic w-events  --partitions 3 //Kafka does not currently support reducing the number of partitions for a topic.
+kafka-topics --bootstrap-server host.docker.internal:9095 --delete --topic w-events
+kafka-topics --list --bootstrap-server host.docker.internal:9094
+
+===== CONSUMER GROUPS ======
+kafka-consumer-groups --bootstrap-server host.docker.internal:9095 --list
+kafka-consumer-groups --bootstrap-server host.docker.internal:9094 --describe --group _DAVID_
+kafka-consumer-groups --bootstrap-server host.docker.internal:9095 --describe --group _DAVID_ --members
+kafka-consumer-groups --bootstrap-server host.docker.internal:9095 --describe --group _DAVID_ --members --verbose
+kafka-consumer-groups --bootstrap-server host.docker.internal:9095 --describe --group _DAVID_  --state
+kafka-consumer-groups --bootstrap-server host.docker.internal:9095 --delete --group _DAVID_
+kafka-consumer-groups --bootstrap-server host.docker.internal:9095 --reset-offsets --group _DAVID_ --topic w-events --to-latest
+
+===== PARTITIONS ======
+kafka-reassign-partitions
+
+===== CONFIGS======
+kafka-configs
+
+===== IMP CONFIGS =====
+Controlled Shutdown:
+controlled.shutdown.enable=true
+Auto Leader Rebalance :
+auto.leader.rebalance.enable=true
+
+kafka-console-consumer --bootstrap-server host.kafka:9094 --topic x-events --from-beginning
+kafka-console-producer --broker-list host.kafka:9094 --topic x-events
+
+
+For reference, here are the stats on one of LinkedIn's busiest clusters (at peak):
+60 brokers
+50k partitions (replication factor 2)
+800k messages/sec in
+300 MB/sec inbound, 1 GB/sec+ outbound
+
+=====CONNNECT======
+bin\windows\connect-standalone.bat config\connect-standalone.properties config\connect-console-source.properties
+bin\windows\connect-standalone.bat config\connect-standalone.properties config\connect-file-source.properties config\connect-file-sink.properties
+
+
+-------
+docker build --tag kapilshekharraina/simplekafka:1 .
+
+docker run -p 2181:2181 -p 9092:9092 -p 9099:9099 -it --name simplekafka kapilshekharraina/simplekafka:1 /bin/sh
+
+
+docker run -p 2181:2181 -p 9092:9092 --env  KAFKA_ADVERTISED_LISTENERS:PLAINTEXT://kafka:9092 --env KAFKA_LISTENERS:PLAINTEXT://0.0.0.0:9092 --env KAFKA_ZOOKEEPER_CONNECT:zookeeper:2181 -it --name simplekafka kapilshekharraina/simplekafka:1 /bin/sh
+./bin/zookeeper-server-start.sh ./config/zookeeper.properties
+
+docker container run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock portainer/portainer
+
+

@@ -1,0 +1,31 @@
+--- 
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  labels: 
+    app: grafana
+    version: v1
+  name: grafana
+spec: 
+  replicas: 1
+  selector: 
+    matchLabels: 
+      app: grafana
+      version: v1
+  template: 
+    metadata: 
+      labels: 
+        app: grafana
+        version: v1
+    spec: 
+      containers: 
+        - 
+          image: grafana/grafana
+          imagePullPolicy: IfNotPresent
+          name: grafana
+          ports: 
+          - containerPort: 3000    
+
+          env:
+            - name:  GF_SECURITY_ADMIN_PASSWORD
+              value: "secret"

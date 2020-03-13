@@ -1,0 +1,18 @@
+--- 
+apiVersion: v1
+kind: Service
+metadata: 
+  labels: 
+    app: zookeeper
+    version: v1
+  name: zookeeper
+spec: 
+  ports: 
+    - 
+      name: http
+      port: 2181
+      targetPort: 2181
+  selector: 
+    app: zookeeper
+    version: v1
+    
