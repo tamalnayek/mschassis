@@ -13,19 +13,30 @@ spec:
       port: 8400
       targetPort: 8400
     - 
-      name: http8500
-      port: 8500
-      targetPort: 8500
-    - 
-      name: http8600
-      port: 8600
-      targetPort: 8600
-      protocol: TCP
-    - 
-      name: http8500udp
+      name: http8600udp
       port: 8600
       targetPort: 8600
       protocol: UDP
+  clusterIP: 10.97.176.162
+  selector: 
+    app: consul-server-bootstrap
+    version: v1
+  
+--- 
+apiVersion: v1
+kind: Service
+metadata: 
+  labels: 
+    app: consul-server-http
+    version: v1
+  name: consul-server-http
+spec: 
+  ports: 
+
+    - 
+      name: http8500
+      port: 8500
+      targetPort: 8500
   selector: 
     app: consul-server-bootstrap
     version: v1

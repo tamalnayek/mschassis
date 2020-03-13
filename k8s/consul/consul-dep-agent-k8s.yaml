@@ -1,0 +1,107 @@
+--- 
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  labels: 
+    app: consul-agent-1
+    version: v1
+  name: consul-agent-1
+spec: 
+  replicas: 1
+  selector: 
+    matchLabels: 
+      app: consul-agent-1
+      version: v1
+  template: 
+    metadata: 
+      labels: 
+        app: consul-agent-1
+        version: v1
+    spec: 
+      containers: 
+        - 
+          image: consul:latest
+          imagePullPolicy: IfNotPresent
+          name: consul-agent-1
+          command: ["consul"]
+          args: ["agent","-server", "-retry-join","consul-server-bootstrap", "-client", "0.0.0.0","-data-dir","/etc/data"]
+          volumeMounts:
+            - mountPath: /etc/data
+              name: consul-data        
+      volumes:
+       - name: consul-data
+         hostPath:
+            path: /work/sharedmount/consul/data/agent/1
+            type: DirectoryOrCreate 
+            
+--- 
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  labels: 
+    app: consul-agent-2
+    version: v1
+  name: consul-agent-2
+spec: 
+  replicas: 1
+  selector: 
+    matchLabels: 
+      app: consul-agent-2
+      version: v1
+  template: 
+    metadata: 
+      labels: 
+        app: consul-agent-2
+        version: v1
+    spec: 
+      containers: 
+        - 
+          image: consul:latest
+          imagePullPolicy: IfNotPresent
+          name: consul-agent-2
+          command: ["consul"]
+          args: ["agent","-server", "-retry-join","consul-server-bootstrap", "-client", "0.0.0.0","-data-dir","/etc/data"]
+          volumeMounts:
+            - mountPath: /etc/data
+              name: consul-data        
+      volumes:
+       - name: consul-data
+         hostPath:
+            path: /work/sharedmount/consul/data/agent/2
+            type: DirectoryOrCreate 
+
+--- 
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  labels: 
+    app: consul-agent-3
+    version: v1
+  name: consul-agent-3
+spec: 
+  replicas: 1
+  selector: 
+    matchLabels: 
+      app: consul-agent-3
+      version: v1
+  template: 
+    metadata: 
+      labels: 
+        app: consul-agent-3
+        version: v1
+    spec: 
+      containers: 
+        - 
+          image: consul:latest
+          imagePullPolicy: IfNotPresent
+          name: consul-agent-3
+          command: ["consul"]
+          args: ["agent","-server", "-retry-join","consul-server-bootstrap", "-client", "0.0.0.0","-data-dir","/etc/data"]
+          volumeMounts:
+            - mountPath: /etc/data
+              name: consul-data        
+      volumes:
+       - name: consul-data
+         hostPath:
+            path: /work/sharedmount/consul/data/agent/3
+            type: DirectoryOrCreate 
