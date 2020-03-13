@@ -1,0 +1,41 @@
+--- 
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  labels: 
+    app: vault
+    version: v1
+  name: vault
+spec: 
+  replicas: 1
+  selector: 
+    matchLabels: 
+      app: vault
+      version: v1
+  template: 
+    metadata: 
+      labels: 
+        app: vault
+        version: v1
+    spec: 
+      containers: 
+        - 
+          image: "vault"
+          imagePullPolicy: IfNotPresent
+          name: vault
+          ports: 
+          - containerPort: 8200    
+
+          env:
+            - name:  VAULT_ADDR
+              value: "http://127.0.0.1:8200"
+          volumeMounts:
+            - mountPath: /vault/config
+              name: vault-config
+          command: ["vault"]
+          args: ["server","-config=/vault/config/vault-config.json"]              
+      volumes:
+       - name: vault-config
+         hostPath:
+            path: /work/sharedmount/vault/config
+            type: DirectoryOrCreate
