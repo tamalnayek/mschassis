@@ -27,5 +27,7 @@ spec:
           - containerPort: 9093
           - containerPort: 8855
           env:
-            - name:   turbine.activeprofiles
+            - name: turbine.activeprofiles
               value: "startup, dev"
+            - name: turbine.configserver.labels
+              value: "vbconfigs" 
