@@ -46,8 +46,8 @@ spec:
               value: "true"              
             - name: configserver.git.deleteUntrackedBranches
               value: "true"
-            - name: configserver.label
-              value: "vbconfigs,master"              
+#            - name: configserver.label
+#              value: "vbconfigs"              
             - name: configserver.vault.enabled
               value: "false"              
             - name: configserver.vault.host
