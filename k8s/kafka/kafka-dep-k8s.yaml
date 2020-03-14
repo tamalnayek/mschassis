@@ -4,19 +4,19 @@ kind: Deployment
 metadata: 
   labels: 
     app: kafka
-    broker: "1"
+    broker: b1
   name: kafka1
 spec: 
   replicas: 1
   selector: 
     matchLabels: 
       app: kafka
-      broker: "1"
+      broker: b1
   template: 
     metadata: 
       labels: 
         app: kafka
-        broker: "1"
+        broker: b1
     spec: 
       containers: 
         - 
@@ -56,19 +56,19 @@ kind: Deployment
 metadata: 
   labels: 
     app: kafka
-    broker: "2"
+    broker: b2
   name: kafka2
 spec: 
   replicas: 1
   selector: 
     matchLabels: 
       app: kafka
-      broker: "2"
+      broker: b2
   template: 
     metadata: 
       labels: 
         app: kafka
-        broker: "2"
+        broker: b2
     spec: 
       containers: 
         - 

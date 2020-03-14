@@ -1,6 +1,7 @@
 master-- Master : 192.168.56.105 and 10.0.2.8
 Node01-- Node01 : 192.168.56.108 and 10.0.2.10
 Node02-- Node02 : 192.168.56.106 and 10.0.2.9
+		mfs		: 192.168.56.109 and 10.0.2.11
 
 
 https://vitux.com/install-and-deploy-kubernetes-on-ubuntu/
@@ -20,3 +21,7 @@ mount -t vboxsf sharedmount /work/sharedmount
 sudo nano /etc/fstab
 sharedmount	/work/sharedmount	vboxsf	defaults	0	0
 sudo nano /etc/modules
+
+------K8S Dashboard ---------
+https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/
+https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/creating-sample-user.md
