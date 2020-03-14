@@ -1,0 +1,18 @@
+kubectl get serviceaccounts -n kube-system
+kubectl get clusterrolebindings
+kubectl get rolebindings
+kubectl get rolebindings -n kube-system
+
+kubectl get serviceaccounts
+kubectl get serviceaccounts -n kube-system
+
+
+#Service Account token
+/var/run/secrets/kubernetes.io/serviceaccount
+
+# Check use roles in liux
+id
+
+#check RBAC in K8S
+kubectl auth can-i <VERB> <RESOURCE> <OP: RESOURCENAME>
+

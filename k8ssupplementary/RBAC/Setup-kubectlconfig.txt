@@ -1,0 +1,23 @@
+eyJhbGciOiJSUzI1NiIsImtpZCI6IiJ9.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJkZWZhdWx0Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6InVzZXIwMS10b2tlbi1iOGI0NSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJ1c2VyMDEiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC51aWQiOiJiZTgxOGI5Mi1mMzU0LTRlYTktYjgxNC00NDUxNWY3NmU4ODAiLCJzdWIiOiJzeXN0ZW06c2VydmljZWFjY291bnQ6ZGVmYXVsdDp1c2VyMDEifQ.EyqAWe55ZOu2h9Y3SEEUtTJC16RTtG05tgiLo-7amY6Dyrp6oKCEzs8Zz6i3M5ZZ6SB6lqFZ5Y5db7JVxZC2X6iL8tcPRLMu4IrsT5-QuOgWosskKzIRtVfBmYHUExdx5xZTtuv3zMUpv0oO_sDNdmA0klp51gIPGFOdjCC4dR4Vx_47P2QVs6e2VsxZfR7wLNYwxxg7u1GzTdr0W2mg8EiR9vzM3hBrJa25BBfGJx2NqYebV7sZb2NbBA_IN7BSihiWNu4sKt6sYjGsiDeXICqU5LEsqEcYexLhDILPDgAIaxYDj2CJ9bv-p7hL7AHkRRkOmnHzk6EIWvshBHlklw
+
+//create sa
+kubectl create sa serviceaccount.yaml
+kubectl apply -f role.yaml
+kubectl apply -f rolebinding.yaml
+kubectl apply -f clusterrole.yaml
+kubectl apply -f clusterrolebinding.yaml
+
+//kubectl create rolebinding masterRoleBinding --clusterrole=masterrole --serviceaccount=default:user01
+//kubectl create clusterrolebinding masterClusterRoleBinding --clusterrole=masterrole --serviceaccount=kube-system:default
+
+
+kubectl inspect sa user01 -o yaml
+kubectl get secret default-token-hrtvx -o yaml
+base64 decode
+
+kubectl config set-cluster ksrk8s --insecure-skip-tls-verify=true --server=https://34.222.29.152
+kubectl config set-credentials <sausername> --token=
+kubectl config set-context ksrk8s --cluster=ksrk8s --user=<sausername>
+
+
+
