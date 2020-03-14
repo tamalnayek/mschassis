@@ -1,0 +1,11 @@
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: master-role-binding
+subjects:
+- kind: ServiceAccount
+  name: user01
+roleRef:
+  kind: Role
+  name: masterrole
+  apiGroup: rbac.authorization.k8s.io
