@@ -9,9 +9,11 @@ metadata:
 spec: 
   ports: 
     - 
-      name: http
+      name: tcpkafkab1
       port: 9094
       targetPort: 9094
+      protocol: TCP
+  #clusterIP: None    
   type: NodePort
   selector: 
     app: kafka
@@ -28,9 +30,11 @@ metadata:
 spec: 
   ports: 
     - 
-      name: http
+      name: tcpkafkab2
       port: 9095
       targetPort: 9095
+      protocol: TCP
+  #clusterIP: None
   type: NodePort
   selector: 
     app: kafka

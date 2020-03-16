@@ -12,6 +12,7 @@ spec:
       name: http
       port: 2181
       targetPort: 2181
+  type: NodePort
   selector: 
     app: zookeeper
     version: v1

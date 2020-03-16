@@ -7,7 +7,14 @@ kafka-topics --bootstrap-server host.docker.internal:9095 --alter --topic w-even
 kafka-topics --bootstrap-server host.docker.internal:9095 --delete --topic w-events
 kafka-topics --list --bootstrap-server kafka1:30838
 
-kafka-topics --create --bootstrap-server kafka1:30838 --replication-factor 2 --partitions 2 --topic w-events
+./kafka-topics.sh --create --bootstrap-server kafka1:9094 --replication-factor 2 --partitions 2 --topic TX-DISCOUNTSTREAM
+./kafka-topics.sh --list --bootstrap-server kafka1:9094
+./kafka-topics.sh --describe --bootstrap-server kafka1:9094 --topic TX-DISCOUNTSTREAM
+./kafka-console-producer.sh --broker-list 10.110.52.46:9094 --topic w-events
+./kafka-console-consumer.sh --bootstrap-server kafka1:9094 --topic TX-DISCOUNTSTREAM
+
+./kafka-topics.sh --bootstrap-server kafka1:9094 --delete --topic T-DISCOUNTSTREAM
+	
 
 ===== CONSUMER GROUPS ======
 kafka-consumer-groups --bootstrap-server host.docker.internal:9095 --list
