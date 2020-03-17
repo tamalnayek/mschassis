@@ -14,7 +14,9 @@ kafka-topics --list --bootstrap-server kafka1:30838
 ./kafka-console-consumer.sh --bootstrap-server kafka1:9094 --topic TX-DISCOUNTSTREAM
 
 ./kafka-topics.sh --bootstrap-server kafka1:9094 --delete --topic T-DISCOUNTSTREAM
-	
+
+//From Windows Host
+kafka-console-consumer --bootstrap-server localhost:9094 --topic TX-DISCOUNTSTREAM --from-beginning
 
 ===== CONSUMER GROUPS ======
 kafka-consumer-groups --bootstrap-server host.docker.internal:9095 --list
@@ -62,5 +64,7 @@ docker run -p 2181:2181 -p 9092:9092 --env  KAFKA_ADVERTISED_LISTENERS:PLAINTEXT
 ./bin/zookeeper-server-start.sh ./config/zookeeper.properties
 
 docker container run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock portainer/portainer
+
+
 
 
