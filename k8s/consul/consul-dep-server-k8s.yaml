@@ -24,7 +24,7 @@ spec:
           imagePullPolicy: IfNotPresent
           name: consul-server-1
           command: ["consul"]
-          args: ["agent","-server", "-bootstrap-expect", "3","-retry-join","consul-server-bootstrap", "-client", "0.0.0.0","-data-dir","/etc/data"]
+          args: ["agent","-server", "-retry-join","consul-server-bootstrap", "-client", "0.0.0.0","-data-dir","/etc/data"]
           volumeMounts:
             - mountPath: /etc/data
               name: consul-data        
@@ -63,7 +63,7 @@ spec:
           imagePullPolicy: IfNotPresent
           name: consul-server-2
           command: ["consul"]
-          args: ["agent","-server", "-bootstrap-expect", "3","-retry-join","consul-server-bootstrap", "-client", "0.0.0.0","-data-dir","/etc/data"]
+          args: ["agent","-server", "-retry-join","consul-server-bootstrap", "-client", "0.0.0.0","-data-dir","/etc/data"]
           volumeMounts:
             - mountPath: /etc/data
               name: consul-data        
@@ -101,7 +101,7 @@ spec:
           imagePullPolicy: IfNotPresent
           name: consul-server-3
           command: ["consul"]
-          args: ["agent","-server", "-bootstrap-expect", "3","-retry-join","consul-server-bootstrap", "-client", "0.0.0.0","-data-dir","/etc/data"]
+          args: ["agent","-server", "-retry-join","consul-server-bootstrap", "-client", "0.0.0.0","-data-dir","/etc/data"]
           volumeMounts:
             - mountPath: /etc/data
               name: consul-data        

@@ -24,12 +24,11 @@ spec:
           imagePullPolicy: IfNotPresent
           name: consul-server-bootstrap
           command: ["consul"]
-          args: ["agent","-server", "-bootstrap-expect", "3", "-ui", "-client", "0.0.0.0","-data-dir","/etc/data"]
+          args: ["agent","-server","-bootstrap", "-ui", "-client", "0.0.0.0","-data-dir","/etc/data"]
           ports: 
           - containerPort: 8400
           - containerPort: 8500 #Http
           - containerPort: 8600
-          - containerPort: 8400
           volumeMounts:
             - mountPath: /etc/data
               name: consul-data        
