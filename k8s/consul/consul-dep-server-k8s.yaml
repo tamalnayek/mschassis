@@ -30,9 +30,12 @@ spec:
               name: consul-data        
       volumes:
        - name: consul-data
-         hostPath:
-            path: /work/sharedmount/consul/data/server/1
-            type: DirectoryOrCreate              
+         persistentVolumeClaim:
+            claimName: consul-pvc
+#       - name: consul-data
+#         hostPath:
+#            path: /work/sharedmount/consul/data/agent/3
+#            type: DirectoryOrCreate               
 
 --- 
 apiVersion: apps/v1
@@ -66,9 +69,12 @@ spec:
               name: consul-data        
       volumes:
        - name: consul-data
-         hostPath:
-            path: /work/sharedmount/consul/data/server/2
-            type: DirectoryOrCreate              
+         persistentVolumeClaim:
+            claimName: consul-pvc
+#       - name: consul-data
+#         hostPath:
+#            path: /work/sharedmount/consul/data/agent/3
+#            type: DirectoryOrCreate             
 --- 
 apiVersion: apps/v1
 kind: Deployment
@@ -101,6 +107,9 @@ spec:
               name: consul-data        
       volumes:
        - name: consul-data
-         hostPath:
-            path: /work/sharedmount/consul/data/server/3
-            type: DirectoryOrCreate  
+         persistentVolumeClaim:
+            claimName: consul-pvc
+#       - name: consul-data
+#         hostPath:
+#            path: /work/sharedmount/consul/data/agent/3
+#            type: DirectoryOrCreate  

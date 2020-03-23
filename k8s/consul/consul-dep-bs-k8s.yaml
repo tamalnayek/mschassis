@@ -35,6 +35,5 @@ spec:
               name: consul-data        
       volumes:
        - name: consul-data
-         hostPath:
-            path: /work/sharedmount/consul/data
-            type: DirectoryOrCreate 
+         persistentVolumeClaim:
+            claimName: consul-pvc

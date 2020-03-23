@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: k8s-nfs-pv
+  name: k8s-nfs-mysql-pv
 spec:
   capacity:
-    storage: 5Gi # This size is used to match a volume to a tenents claim
+    storage: 1Gi # This size is used to match a volume to a tenents claim
   accessModes:
     - ReadWriteMany # Access modes are defined below
   persistentVolumeReclaimPolicy: Recycle # Reclaim policies are defined below
 #  storageClassName: immediate
   nfs:
     server: 10.0.2.11 # Please change this to your NFS server
-    path: /mnt/k8smnt # Please change this to the relevant share
+    path: /mnt/k8smnt/mysql # Please change this to the relevant share

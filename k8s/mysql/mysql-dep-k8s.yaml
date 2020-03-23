@@ -40,11 +40,10 @@ spec:
               value: "password"	
             - name: innodb_use_native_aio
               value: "0"	              
-#          volumeMounts:
-#            - mountPath: /var/lib/mysql
-#              name: mysqlvol
-#      volumes:
-#       - name: mysqlvol
-#         hostPath:
-#            path: /work/sharedmount/mysql
-#            type: DirectoryOrCreate
+          volumeMounts:
+            - mountPath: /var/lib/mysql
+              name: mysqlvol
+      volumes:
+       - name: mysqlvol
+         persistentVolumeClaim:
+            claimName: mysql-pvc
