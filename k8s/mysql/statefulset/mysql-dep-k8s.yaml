@@ -1,0 +1,50 @@
+--- 
+apiVersion: apps/v1
+kind: StatefulSet
+metadata: 
+  labels: 
+    app: mysqlss
+    version: v1
+  name: mysqlss
+spec: 
+  replicas: 1
+  serviceName: "mysqlss"
+  selector: 
+    matchLabels: 
+      app: mysqlss # has to match .spec.template.metadata.labels
+      version: v1
+  template: 
+    metadata: 
+      labels: 
+        app: mysqlss # has to match .spec.selector.matchLabels
+        version: v1
+    spec: 
+#      securityContext:
+#        runAsUser: 1000
+#        runAsGroup: 50
+      containers: 
+        - 
+          image: mysql
+          imagePullPolicy: IfNotPresent
+          name: mysqlss
+          ports: 
+          - containerPort: 3306    
+
+          env:
+            - name:  MYSQL_DATABASE
+              value: "db_mysql_default"
+            - name: MYSQL_USER
+              value: "user"
+            - name: MYSQL_PASSWORD
+              value: "password"
+            - name: MYSQL_ROOT_PASSWORD
+              value: "password"	
+            - name: innodb_use_native_aio
+              value: "0"	              
+          volumeMounts:
+            - mountPath: /var/lib/mysql
+              name: mysqlvol
+      volumes:
+       - name: mysqlvol
+         persistentVolumeClaim:
+            claimName: mysql-pvc-ss
