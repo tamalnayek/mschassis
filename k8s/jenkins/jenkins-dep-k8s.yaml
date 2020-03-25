@@ -26,6 +26,13 @@ spec:
           ports: 
           - containerPort: 8900    
           - containerPort: 50000  
+          resources:
+            requests:
+                memory: "512Mi"
+                cpu: "200m"
+            limits:
+                memory: "786Mi"
+                cpu: "800m"  
           volumeMounts:
             - mountPath: "/var/jenkins_home"
               name: jenkinshome
@@ -33,9 +40,13 @@ spec:
               name: dockersock
       volumes:
        - name: jenkinshome
-         hostPath:
-            path: "/work/sharedmount/jenkins"
-            type: DirectoryOrCreate
+         persistentVolumeClaim:
+            claimName: jenkins-pvc              
+#      volumes:
+#       - name: jenkinshome
+#         hostPath:
+#            path: "/work/sharedmount/jenkins"
+#            type: DirectoryOrCreate
        - name: dockersock
          hostPath:
             path: "/var/run/docker.sock"

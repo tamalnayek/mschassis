@@ -39,7 +39,14 @@ spec:
             - name: MYSQL_ROOT_PASSWORD
               value: "password"	
             - name: innodb_use_native_aio
-              value: "0"	              
+              value: "0"	 
+          resources:
+            requests:
+                memory: "512Mi"
+                cpu: "100m"
+            limits:
+                memory: "1024Mi"
+                cpu: "400m"              
           volumeMounts:
             - mountPath: /var/lib/mysql
               name: mysqlvol

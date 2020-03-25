@@ -28,6 +28,13 @@ spec:
               value: "secret string"
             - name: RABBITMQ_NODENAME
               value: "rabbitmq-worker"
+          resources:
+            requests:
+                memory: "256Mi"
+                cpu: "200m"
+            limits:
+                memory: "768Mi"
+                cpu: "400m" 
           volumeMounts:
             - mountPath: "/etc/rabbitmq"
               name: rabbitmq-config

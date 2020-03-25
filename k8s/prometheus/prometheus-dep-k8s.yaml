@@ -29,6 +29,13 @@ spec:
           volumeMounts:
             - mountPath: /etc/prometheus/config
               name: prometheus-config
+          resources:
+            requests:
+                memory: "256Mi"
+                cpu: "100m"
+            limits:
+                memory: "768Mi"
+                cpu: "300m" 
       volumes:
        - name: prometheus-config
          hostPath:

@@ -46,10 +46,23 @@ spec:
               value: "INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT,OUTSIDECLUSTER:PLAINTEXT"   
             - name: LOG_CLEANUP_POLICY
               value: "compact"        
-
+          resources:
+            requests:
+                memory: "128Mi"
+                cpu: "10m"
+            limits:
+                memory: "768Mi"
+                cpu: "50m" 
           volumeMounts:
             - mountPath: "/var/run/docker.sock"
               name: dockersock
+          resources:
+            requests:
+                memory: "512Mi"
+                cpu: "200m"
+            limits:
+                memory: "786Mi"
+                cpu: "400m" 
       volumes:
        - name: dockersock
          hostPath:
@@ -105,10 +118,17 @@ spec:
               value: "INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT,OUTSIDECLUSTER:PLAINTEXT"
             - name: LOG_CLEANUP_POLICY
               value: "compact"       
-            
+          resources:
+            requests:
+                memory: "512Mi"
+                cpu: "200m"
+            limits:
+                memory: "786Mi"
+                cpu: "400m"              
           volumeMounts:
             - mountPath: "/var/run/docker.sock"
               name: dockersock
+ 
       volumes:
        - name: dockersock
          hostPath:

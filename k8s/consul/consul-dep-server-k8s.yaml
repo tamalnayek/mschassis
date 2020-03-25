@@ -25,6 +25,13 @@ spec:
           name: consul-server-1
           command: ["consul"]
           args: ["agent","-server", "-retry-join","consul-server-bootstrap", "-client", "0.0.0.0","-data-dir","/etc/data"]
+          resources:
+            requests:
+                memory: "256Mi"
+                cpu: "200m"
+            limits:
+                memory: "512Mi"
+                cpu: "400m"
           volumeMounts:
             - mountPath: /etc/data
               name: consul-data        
@@ -64,6 +71,13 @@ spec:
           name: consul-server-2
           command: ["consul"]
           args: ["agent","-server", "-retry-join","consul-server-bootstrap", "-client", "0.0.0.0","-data-dir","/etc/data"]
+          resources:
+            requests:
+                memory: "256Mi"
+                cpu: "200m"
+            limits:
+                memory: "512Mi"
+                cpu: "400m"
           volumeMounts:
             - mountPath: /etc/data
               name: consul-data        
@@ -102,6 +116,13 @@ spec:
           name: consul-server-3
           command: ["consul"]
           args: ["agent","-server", "-retry-join","consul-server-bootstrap", "-client", "0.0.0.0","-data-dir","/etc/data"]
+          resources:
+            requests:
+                memory: "256Mi"
+                cpu: "200m"
+            limits:
+                memory: "512Mi"
+                cpu: "400m"
           volumeMounts:
             - mountPath: /etc/data
               name: consul-data        

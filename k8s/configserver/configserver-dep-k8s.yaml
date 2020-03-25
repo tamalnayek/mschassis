@@ -59,7 +59,7 @@ spec:
             - name: configserver.vault.authentication
               value: "TOKEN"
             - name: configserver.vault.token
-              value: "s.vB8FewQEXUL0bHsAzAzbSPN1"
+              value: "s.VkAEnNAx12L0yjGEPvGezeVT"
             - name: configserver.vault.kv-version
               value: "1"
             - name: configserver.vault.order
@@ -88,7 +88,14 @@ spec:
             - name: configserver.bus.rabbitmq.port
               value: "5672"     
             - name: configserver.logging.level.web
-              value: "DEBUG"                   
+              value: "DEBUG"      
+          resources:
+            requests:
+                memory: "256Mi"
+                cpu: "200m"
+            limits:
+                memory: "768Mi"
+                cpu: "400m"                 
 #          livenessProbe: 
 #            httpGet: 
 #              path: /actuator/health

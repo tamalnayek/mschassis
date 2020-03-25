@@ -20,7 +20,7 @@ spec:
     spec: 
       containers: 
         - 
-          image: grafana/grafana
+          image: grafana/grafana    
           imagePullPolicy: IfNotPresent
           name: grafana
           ports: 
@@ -29,3 +29,10 @@ spec:
           env:
             - name:  GF_SECURITY_ADMIN_PASSWORD
               value: "secret"
+          resources:
+            requests:
+                memory: "256Mi"
+                cpu: "100m"
+            limits:
+                memory: "768Mi"
+                cpu: "300m" 

@@ -31,3 +31,10 @@ spec:
               value: "startup, dev"
             - name: turbine.configserver.labels
               value: "vbconfigs" 
+          resources:
+            requests:
+                memory: "256Mi"
+                cpu: "300m"
+            limits:
+                memory: "512Mi"
+                cpu: "800m" 

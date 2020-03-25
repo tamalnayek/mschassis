@@ -35,7 +35,13 @@ spec:
               value: "eureka-1"
             - name: eureka.peer.url
               value: "http://eureka-2:8762/eureka"
-
+          resources:
+            requests:
+                memory: "256Mi"
+                cpu: "200m"
+            limits:
+                memory: "768Mi"
+                cpu: "400m" 
               
 --- 
 apiVersion: apps/v1
@@ -74,3 +80,10 @@ spec:
               value: "eureka-2"
             - name: eureka.peer.url
               value: "http://eureka-1:8762/eureka"
+          resources:
+            requests:
+                memory: "256Mi"
+                cpu: "200m"
+            limits:
+                memory: "768Mi"
+                cpu: "400m"                   

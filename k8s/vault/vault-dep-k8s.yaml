@@ -33,7 +33,14 @@ spec:
             - mountPath: /vault/config
               name: vault-config
           command: ["vault"]
-          args: ["server","-config=/vault/config/vault-config.json"]              
+          args: ["server","-config=/vault/config/vault-config.json"]      
+          resources:
+            requests:
+                memory: "256Mi"
+                cpu: "100m"
+            limits:
+                memory: "768Mi"
+                cpu: "300m"            
       volumes:
        - name: vault-config
          hostPath:

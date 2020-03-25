@@ -29,6 +29,13 @@ spec:
           - containerPort: 8400
           - containerPort: 8500 #Http
           - containerPort: 8600
+          resources:
+            requests:
+                memory: "256Mi"
+                cpu: "200m"
+            limits:
+                memory: "512Mi"
+                cpu: "400m"
           volumeMounts:
             - mountPath: /etc/data
               name: consul-data        

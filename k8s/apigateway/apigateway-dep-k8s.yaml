@@ -19,8 +19,7 @@ spec:
         version: v1
     spec: 
       containers: 
-        - 
-          image: "kapilshekharraina/apigateway:latest"
+        - image: "kapilshekharraina/apigateway:latest"
           imagePullPolicy: Always
           name: apigateway
           ports: 
@@ -29,3 +28,10 @@ spec:
           env:
             - name:   apigateway.activeprofiles
               value: "startup, dev"
+          resources:
+            requests:
+                memory: "256Mi"
+                cpu: "200m"
+            limits:
+                memory: "768Mi"
+                cpu: "400m"                
