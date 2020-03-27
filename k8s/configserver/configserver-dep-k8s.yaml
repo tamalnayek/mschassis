@@ -59,7 +59,7 @@ spec:
             - name: configserver.vault.authentication
               value: "TOKEN"
             - name: configserver.vault.token
-              value: "s.VkAEnNAx12L0yjGEPvGezeVT"
+              value: "s.maTULGKDFA4iBzwzVc1Ir0Vc"
             - name: configserver.vault.kv-version
               value: "1"
             - name: configserver.vault.order

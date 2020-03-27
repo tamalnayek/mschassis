@@ -32,6 +32,8 @@ spec:
           volumeMounts:
             - mountPath: /vault/config
               name: vault-config
+            - mountPath: /vault/data
+              name: vault-data
           command: ["vault"]
           args: ["server","-config=/vault/config/vault-config.json"]      
           resources:
@@ -46,3 +48,7 @@ spec:
          hostPath:
             path: /work/sharedmount/vault/config
             type: DirectoryOrCreate
+       - name: vault-data
+         hostPath:
+            path: /work/sharedmount/vault/data
+            type: DirectoryOrCreate            
