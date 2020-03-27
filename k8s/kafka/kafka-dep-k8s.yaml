@@ -48,21 +48,14 @@ spec:
               value: "compact"        
           resources:
             requests:
-                memory: "128Mi"
-                cpu: "10m"
+                memory: "256Mi"
+                cpu: "200m"
             limits:
                 memory: "768Mi"
-                cpu: "50m" 
+                cpu: "400m" 
           volumeMounts:
             - mountPath: "/var/run/docker.sock"
               name: dockersock
-          resources:
-            requests:
-                memory: "512Mi"
-                cpu: "200m"
-            limits:
-                memory: "786Mi"
-                cpu: "400m" 
       volumes:
        - name: dockersock
          hostPath:
@@ -120,7 +113,7 @@ spec:
               value: "compact"       
           resources:
             requests:
-                memory: "512Mi"
+                memory: "256Mi"
                 cpu: "200m"
             limits:
                 memory: "786Mi"

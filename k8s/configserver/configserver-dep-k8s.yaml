@@ -32,9 +32,6 @@ spec:
               containerPort: 8889
               name: httpactuator
               protocol: TCP
-          resources: 
-            requests: 
-              cpu: 100m
           env:
             - name: configserver.activeprofiles
               value: "git, vault, redis"
