@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: mschassis-ingress
+#  annotations:
+#    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /product
+#        pathType: Prefix
+        backend:
+         serviceName: productms
+         servicePort: 8081
+      - path: /webauditms
+        backend:
+          serviceName: webauditms
+          servicePort: 8077
+#     - backend:
+#       serviceName: default-svc # doesnt exist
+#         servicePort: 80
