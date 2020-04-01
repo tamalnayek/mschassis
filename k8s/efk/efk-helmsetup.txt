@@ -2,8 +2,8 @@ Install HELM
 curl -fsSL -o helm.gz https://get.helm.sh/helm-v3.1.2-linux-amd64.tar.gz
 
 
-mkdir -p /mnt/data/efk-master && kubectl create -f pv-master.yaml
-mkdir -p /mnt/data/efk-data && kubectl create -f pv-data.yaml
+mkdir -p /mnt/data/efk-master && kubectl create -f pv-master-hostpath.yaml
+mkdir -p /mnt/data/efk-data && kubectl create -f pv-data-hostpath.yaml
 
 
 kubectl create namespace logs
