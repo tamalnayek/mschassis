@@ -1,0 +1,15 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: efk-data-volume
+  labels:
+    type: local
+spec:
+  storageClassName: elasticsearch-data
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    server: 10.0.2.11 # Please change this to your NFS server
+    path: /mnt/k8smnt/elasticsearch/master # Please change this to the relevant share
