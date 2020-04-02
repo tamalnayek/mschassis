@@ -1,5 +1,8 @@
 Install HELM
 curl -fsSL -o helm.gz https://get.helm.sh/helm-v3.1.2-linux-amd64.tar.gz
+curl -LO https://storage.googleapis.com/kubernetes-helm/helm-v2.8.2-linux-amd64.tar.gz
+tar -xvf helm-v2.8.2-linux-amd64.tar.gz
+mv linux-amd64/helm /usr/local/bin/
 
 
 mkdir -p /mnt/data/efk-master && kubectl create -f pv-master.yaml
