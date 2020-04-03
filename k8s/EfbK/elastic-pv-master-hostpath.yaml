@@ -2,6 +2,7 @@ kind: PersistentVolume
 apiVersion: v1
 metadata:
   name: efk-master-volume
+  namespace: logs
   labels:
     type: local
 spec:
