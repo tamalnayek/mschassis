@@ -24,5 +24,6 @@ helm install elasticsearch stable/elasticsearch --namespace=logs \
 
 
 helm install fluent-bit stable/fluent-bit --namespace=logs --set backend.type=es --set backend.es.host=elasticsearch-client  (daemonset)
+https://docs.fluentbit.io/manual/installation/kubernetes
 
 helm install kibana stable/kibana --namespace=logs --set env.ELASTICSEARCH_HOSTS=http://elasticsearch-client:9200 --set service.type=NodePort --set service.nodePort=31000
