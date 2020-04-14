@@ -1,15 +1,15 @@
 kind: PersistentVolume
 apiVersion: v1
 metadata:
-  name: efk-data-volume
-  namespace: logs
+  name: efk-data-volume-pv
+  namespace: elastic
   labels:
     type: local
 spec:
-  storageClassName: elasticsearch-data
+  storageClassName: elasticsearch-data-sc
   capacity:
     storage: 5Gi
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/mnt/data/efk-data"
+    path: "/mnt/data/elastic/efk-data"
