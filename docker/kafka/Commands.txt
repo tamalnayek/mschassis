@@ -31,6 +31,9 @@ auto.leader.rebalance.enable=true
 kafka-console-consumer --bootstrap-server kafka1:9094 --topic w-events --from-beginning
 kafka-console-producer --broker-list kafka2:9094 --topic w-events
 
+kafka-console-consumer --bootstrap-server kafka1:9094 --topic w-events-grouped --formatter kafka.tools.DefaultMessageFormatter --property print.key=true --property print.value=true --property key.deserializer=org.apache.kafka.common.serialization.StringDeserializer --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer
+
+
 
 For reference, here are the stats on one of LinkedIn's busiest clusters (at peak):
 60 brokers
